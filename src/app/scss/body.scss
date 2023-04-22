@@ -1,0 +1,31 @@
+body {
+    box-shadow: 850px 0px 500px -100px #0184e7 inset;
+    background: #1a2f91;
+    animation: bganim 20s infinite linear normal;
+    color: white;
+}
+
+@keyframes bganim {
+    0% {
+        background: #1a2f91;
+    }
+
+    25% {
+        box-shadow: 850px 0px 500px -100px #1a2f91 inset;
+        background: #230600;
+    }
+
+    50% {
+        box-shadow: 850px 0px 500px -100px #230600 inset;
+        background: #fe8b17;
+    }
+
+    85% {
+        box-shadow: 850px 0px 500px -100px #172566 inset;
+        background: #230600;
+    }
+
+    100% {
+        background: #1a2f91;
+    }
+}

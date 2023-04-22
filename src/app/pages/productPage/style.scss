@@ -1,0 +1,132 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+@import 'src/app/scss/variables';
+
+.productPage {
+    &__breadcrumbs {
+    }
+
+    &__title {
+        font-family: 'Prompt';
+        font-size: rem(30);
+        text-transform: capitalize;
+        margin: 0px 0px 10px 0px;
+    }
+
+    &__subtitle {
+        display: flex;
+        gap: 20px;
+        margin: 0px 0px 20px 0px;
+    }
+
+    &__body {
+    }
+}
+.item {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0px, 1fr));
+    grid-gap: 40px;
+
+    &__images {
+        max-width: 100%;
+
+        > img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &__description {
+        color: $transparent;
+        > p {
+            margin: 0px 0px 10px 0px;
+        }
+        > p span {
+            color: #000;
+        }
+    }
+
+    &__target {
+    }
+}
+.target {
+    text-align: center;
+
+    &__prices {
+        text-align: left;
+        margin: 0px 0px 20px 0px;
+    }
+
+    &__button_tocart {
+        margin: 0px 0px 20px 0px;
+    }
+
+    &__quantity {
+        margin: 0px 0px 20px 0px;
+    }
+
+    &__actions {
+        display: inline-flex;
+    }
+}
+.price {
+    margin: 0px 0px 10px 0px;
+    > span:first-child {
+        color: $transparent;
+        text-decoration: line-through;
+        margin: 0px 10px 0px 0px;
+    }
+    > span:last-child {
+        background-color: #00ffd5;
+        border-radius: 10px;
+        padding: 2px 8px;
+        font-size: rem(14);
+    }
+}
+.priceDiscout {
+    font-size: rem(41);
+    color: $transparent;
+    font-family: Prompt;
+    > span {
+        color: #000;
+        font-weight: 600;
+    }
+}
+
+.quantity {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(152, 202, 250, 0.1);
+    border: 1px solid $blue;
+    border-radius: 5px;
+    height: 30px;
+
+    &__button {
+        padding: 0px 10px;
+        height: inherit;
+
+        &_decrement {
+            border-right: 1px solid $blue;
+        }
+
+        &_increment {
+            border-left: 1px solid $blue;
+        }
+    }
+
+    &__input {
+        background-color: rgba(152, 202, 250, 0.1);
+        height: inherit;
+    }
+}
+.actions {
+    &__button {
+        &_compare {
+        }
+
+        &_favorite {
+        }
+    }
+}

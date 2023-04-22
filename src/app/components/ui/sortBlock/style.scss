@@ -1,0 +1,41 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+@import 'src/app/scss/variables';
+
+.sortBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 15px 20px 0px;
+    font-family: 'Prompt';
+
+    &__sort {
+    }
+
+    &__view {
+    }
+}
+.sort {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    color: $transparent;
+    cursor: pointer;
+    &__item.active {
+        color: #000;
+        font-weight: 500;
+    }
+    &__title {
+    }
+}
+.view {
+    display: flex;
+    gap: 10px;
+    font-size: rem(20);
+
+    &__list {
+    }
+
+    &__tile {
+    }
+}

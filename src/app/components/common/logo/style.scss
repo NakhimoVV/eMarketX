@@ -1,0 +1,11 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+@import 'src/app/scss/variables';
+
+.logo-link {
+    display: block;
+    & span {
+        font-family: 'Russo One';
+        font-size: rem(41);
+    }
+}

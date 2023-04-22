@@ -1,0 +1,66 @@
+@use 'sass:math';
+@import 'scss/mixins';
+// Подключение шрифтов ===========================================================================================================================================================================================================================================================================
+@import url(https://fonts.googleapis.com/css?family=Russo+One:regular&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Balsamiq+Sans:regular,italic,700,700italic&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Saira:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Figtree:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Prompt:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap);
+//&display=swap - добавить при подключении через плагин
+@import 'scss/variables';
+@import 'scss/null';
+@import 'scss/body';
+@import 'scss/form';
+// Оболочка ============================================================================================================================================================================================================================================================================================================================================================================================================================================
+#root {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    // Прижимаем footer
+    > main {
+        flex: 1 1 auto;
+    }
+    // Фикс для слайдеров
+    > * {
+        min-width: 0;
+    }
+}
+.btn {
+    width: 100%;
+    height: 45px;
+    color: white;
+    background-color: $orange;
+    border-radius: 8px;
+    font-family: 'Saira';
+    font-weight: 500;
+    font-size: rem(20);
+
+    &:hover {
+        opacity: 0.9;
+    }
+    &:disabled {
+        opacity: 0.5;
+        cursor: auto;
+    }
+}
+.actions {
+    display: flex;
+    gap: 15px;
+    transition: color 150ms ease-in-out;
+
+    &__button_compare {
+        &:hover {
+            color: $orange;
+        }
+    }
+    &__button_favorite {
+        &:hover {
+            color: $orange;
+        }
+    }
+}
+
+@import 'scss/header';
+@import 'scss/main';
+@import 'scss/footer';

@@ -1,0 +1,17 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+@import 'src/app/scss/variables';
+
+.login-title {
+    font-family: Saira;
+    font-weight: 500;
+    font-size: 32px;
+    margin: 0px 0px 15px 0px;
+    color: $transparent;
+    > a.active {
+        color: #000;
+    }
+    > a {
+        cursor: pointer;
+    }
+}

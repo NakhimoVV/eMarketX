@@ -1,0 +1,28 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+@import 'src/app/scss/variables';
+
+.price {
+    &__title {
+        margin: 0px 0px 10px 0px;
+    }
+
+    &__range {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0px 0px 10px 0px;
+        > input {
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            height: 30px;
+            width: 90px;
+            padding: 0 5px;
+            &:focus {
+                outline: 1px solid $blue;
+            }
+        }
+    }
+}

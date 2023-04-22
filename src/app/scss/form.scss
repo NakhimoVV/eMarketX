@@ -1,0 +1,160 @@
+.invalid-feedback {
+    font-family: Prompt;
+    color: #dc3545;
+    margin: 5px 0px 0px 0px;
+}
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px 0px 15px 0px;
+    align-items: center;
+
+    > .btn-eye {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: 0;
+    }
+    > .field-input {
+    }
+}
+.field-input {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    line-height: 1.4;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #abd1c9;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    &.is-invalid {
+        border-color: #dc3545;
+        padding-right: calc(1.5em + 0.75rem);
+        padding-left: calc(1.5em + 0.75rem);
+        background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 12 12%27 width=%2712%27 height=%2712%27 fill=%27none%27 stroke=%27%23dc3545%27%3e%3ccircle cx=%276%27 cy=%276%27 r=%274.5%27/%3e%3cpath stroke-linejoin=%27round%27 d=%27M5.8 3.6h.4L6 6.5z%27/%3e%3ccircle cx=%276%27 cy=%278.2%27 r=%27.6%27 fill=%27%23dc3545%27 stroke=%27none%27/%3e%3c/svg%3e');
+        background-repeat: no-repeat;
+        background-position: left calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.25rem rgba(53, 167, 220, 0.25);
+    }
+    &.is-invalid:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+    }
+}
+
+.btn-eye {
+    display: inline-block;
+    color: $transparent;
+    user-select: none;
+    background-color: transparent;
+    // border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    line-height: 1.4;
+
+    > i {
+        font-size: rem(20);
+    }
+}
+
+.label-text {
+    font-family: Prompt;
+    color: $transparent;
+}
+.icon-eye-closed {
+    color: #212529;
+}
+
+.radio-inline {
+    display: inline-flex;
+    align-items: center;
+    margin: 0.25em 1em em(15) 0em;
+
+    font-family: Prompt;
+}
+.radio-input {
+    width: 1em;
+    height: 1em;
+    margin: 0.25em 0.5em 0.125em 0em;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    appearance: none;
+
+    &[type='radio'] {
+        border-radius: 50%;
+    }
+
+    &:checked {
+        background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%272%27 fill=%27%23fff%27/%3e%3c/svg%3e');
+        background-color: $blue;
+        border-color: $blue;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+}
+.radio-label {
+    user-select: none;
+}
+
+.check-input {
+    width: 1em;
+    height: 1em;
+    margin: 0.25em 0.5em 0.125em 0em;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    appearance: none;
+
+    &[type='checkbox'] {
+        border-radius: 0.25em;
+    }
+
+    &:checked {
+        background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3e%3cpath fill=%27none%27 stroke=%27%23fff%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%273%27 d=%27M6 10l3 3l6-6%27/%3e%3c/svg%3e');
+        background-color: $blue;
+        border-color: $blue;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+    .is-invalid {
+        font-family: Prompt;
+        border-color: #dc3545;
+    }
+}
+
+.check-label {
+    user-select: none;
+}
+
+.search-input {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: em(16) em(120) em(16) em(44);
+    border-radius: 56px;
+    width: 100%;
+    font-size: rem(18);
+    outline: none;
+
+    &::placeholder {
+        color: #c5c5c5;
+    }
+    &:focus {
+        background-color: #fff;
+        & + .search-btn {
+            color: #000;
+        }
+    }
+}
+.search-field {
+    position: relative;
+}
+.search-btn {
+    position: absolute;
+    top: 1.2em;
+    right: 1.5em;
+}

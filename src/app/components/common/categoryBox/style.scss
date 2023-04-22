@@ -1,0 +1,34 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    padding: 20px 5px 12px;
+    box-shadow: rgb(30 31 33 / 12%) 0px 5px 25px;
+    transition: color 150ms ease-in-out;
+    &:hover {
+        color: #0184e7;
+    }
+
+    &__wrap-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px 0px 10px 0px;
+    }
+
+    &__image {
+        max-width: em(100);
+        max-height: em(100);
+        object-fit: contain;
+        object-position: center center;
+    }
+
+    &__title {
+        font-family: 'Saira';
+        text-align: center;
+    }
+}

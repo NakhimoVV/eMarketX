@@ -1,0 +1,26 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+@import 'src/app/scss/variables';
+
+.pagination {
+    display: inline-flex;
+    border: 1px solid $orange;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 5px 0px;
+
+    &__item {
+        background-color: rgb(254, 114, 0, 0.1);
+        color: $orange;
+
+        &.active {
+            background-color: $orange;
+            color: white;
+        }
+    }
+    &__link {
+        font-family: 'Saira';
+        font-weight: 500;
+        padding: 2px 12px;
+    }
+}

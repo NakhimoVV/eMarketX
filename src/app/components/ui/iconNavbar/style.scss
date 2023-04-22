@@ -1,0 +1,44 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+@import 'src/app/scss/variables';
+
+.navbar {
+    display: flex;
+    gap: em(20);
+
+    &__link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.3s ease 0s;
+
+        & span {
+            color: #c5c5c5;
+        }
+        &:hover span {
+            color: white;
+        }
+    }
+    &__link i {
+        font-size: rem(35);
+    }
+
+    &__user {
+        & i {
+            font-size: rem(33);
+        }
+    }
+
+    &__favorites {
+        & i {
+            font-size: rem(33);
+        }
+    }
+
+    &__compare {
+    }
+
+    &__basket {
+    }
+}
