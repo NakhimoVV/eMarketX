@@ -17,6 +17,7 @@ module.exports = {
             { anonymous: 'always', named: 'never' }
         ],
         'spaced-comment': ['off'],
-        'multiline-ternary': ['off']
+        'multiline-ternary': ['off'],
+        'react/display-name': 'off'
     }
 }

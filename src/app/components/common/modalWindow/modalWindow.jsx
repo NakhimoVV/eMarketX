@@ -1,15 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
-import { useHistory } from 'react-router-dom'
 
 const ModalWindow = ({ active, setActive, children }) => {
-    const history = useHistory()
-    const onClose = () => {
-        setActive(false)
-        history.goBack()
-    }
-    //возможно надо будет сделать реакт портал
+    const onClose = () => setActive(false)
     return (
         <>
             {active && (

@@ -5,25 +5,33 @@ import RootCatalog from '../pages/rootCatalog'
 import Header from '../layouts/header'
 import Footer from '../layouts/footer'
 import Login from '../components/ui/login/login'
+import { ToastContainer } from 'react-toastify'
+import withPopup from '../components/ui/hoc/withPopup'
+import { PopupProvider } from '../hooks/useTriggerPopup'
 
 const PageRouter = () => {
+    const ComponentWithPopup = withPopup(Login)
     return (
         <>
-            <Header />
-            <main className="page">
-                <div className="page__container">
-                    <Switch>
-                        <Route path="/login" component={Login} />
-                        <Route
-                            path="/catalog/:categoryId?/:productId?"
-                            component={RootCatalog}
-                        />
-                        <Route path="/" exact component={MainPage} />
-                        <Redirect to="/" />
-                    </Switch>
-                </div>
-            </main>
-            <Footer />
+            <PopupProvider>
+                <ComponentWithPopup />
+                <Header />
+                <main className="page">
+                    <div className="page__container">
+                        <Switch>
+                            <Route path="/login" component={Login} />
+                            <Route
+                                path="/catalog/:categoryId?/:productId?"
+                                component={RootCatalog}
+                            />
+                            <Route path="/" exact component={MainPage} />
+                            <Redirect to="/" />
+                        </Switch>
+                    </div>
+                </main>
+                <Footer />
+            </PopupProvider>
+            <ToastContainer />
         </>
     )
 }

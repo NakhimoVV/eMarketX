@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import ModalWindow from '../../common/modalWindow'
 import LoginForm from './loginForm'
-import './style.scss'
 import RegisterForm from './registerForm'
+import './style.scss'
 
 const Login = () => {
     const [formType, setFormType] = useState('login')
@@ -11,10 +10,8 @@ const Login = () => {
         setFormType(target.id === 'login' ? 'login' : 'register')
     }
 
-    const [modalActive, setModalActive] = useState(true)
-
     return (
-        <ModalWindow active={modalActive} setActive={setModalActive}>
+        <>
             <div className="login-title">
                 <a
                     role="button"
@@ -36,8 +33,7 @@ const Login = () => {
             </div>
             {formType === 'login' && <LoginForm />}
             {formType === 'register' && <RegisterForm />}
-        </ModalWindow>
+        </>
     )
 }
-
 export default Login

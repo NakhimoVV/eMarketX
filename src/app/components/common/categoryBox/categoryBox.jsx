@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import './style.scss'
 import { Link } from 'react-router-dom'
 
-const CategoryBox = ({ id, title, imageURL }) => {
+const CategoryBox = ({ _id, title }) => {
     return (
-        <Link to={`/catalog/${id}`} className="categories__item box">
+        <Link to={`/catalog/${_id}`} className="categories__item box">
             <div className="box__wrap-image">
                 <img
-                    src={`/assets/images/categories/${imageURL}.png`}
-                    alt={imageURL}
+                    src={`/assets/images/categories/${title}.png`}
+                    alt={title}
                     className="box__image"
                 />
             </div>
@@ -19,9 +19,8 @@ const CategoryBox = ({ id, title, imageURL }) => {
 }
 
 CategoryBox.propTypes = {
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    imageURL: PropTypes.string.isRequired
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
 }
 
 export default CategoryBox

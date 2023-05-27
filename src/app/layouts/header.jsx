@@ -65,6 +65,7 @@ const Header = () => {
                     </div>
                     <div className="header__search" id="searchBlock">
                         <SearchField />
+                        {/* Добавить логику поиска */}
                     </div>
                     <IconNavbar />
                 </div>

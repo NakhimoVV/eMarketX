@@ -3,14 +3,20 @@ import ReactDOM from 'react-dom/client'
 import App from './app/App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import './iconsfont.css'
+import { createStore } from './app/store/createStore'
+
+const redux = createStore()
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <BrowserRouter>
-        <React.StrictMode>
-            <App />
-        </React.StrictMode>
+        <Provider store={redux}>
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        </Provider>
     </BrowserRouter>
 )
 

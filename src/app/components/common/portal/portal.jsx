@@ -1,8 +1,7 @@
-import React, { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 
 const Portal = ({ children }) => {
-    // const element = document.createElement('div')
     const element = useMemo(() => {
         const element = document.createElement('div')
         element.className = 'popup'
