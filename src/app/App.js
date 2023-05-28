@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './App.scss'
 import PageRouter from './router/pageRouter'
-import { useDispatch } from 'react-redux'
-import { loadCategoriesList } from './store/categories'
-import { loadProductsList } from './store/products'
+import AppLoader from './components/ui/hoc/appLoader'
 
 function App() {
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(loadCategoriesList())
-        dispatch(loadProductsList())
-    }, [])
-
-    return <PageRouter />
+    return (
+        <AppLoader>
+            <PageRouter />
+        </AppLoader>
+    )
 }
 
 export default App

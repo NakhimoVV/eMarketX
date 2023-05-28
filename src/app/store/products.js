@@ -52,10 +52,22 @@ export const loadProductsList = () => async (dispatch, getState) => {
 
 export const getProductsLoadingStatus = () => (state) =>
     state.products.isLoading
-export const getProductsByCategory = (cat) => (state) => {
-    return state.products.entities
-        ? state.products.entities.filter((prod) => prod.category === cat)
-        : []
+export const getProductsByCategory = (catId) => (state) => {
+    if (state.products.entities) {
+        const products = state.products.entities.filter(
+            (prod) => prod.category === catId
+        )
+        const initialMinMax = [
+            Math.min(...products.map((i) => i.price)),
+            Math.max(...products.map((i) => i.price))
+        ]
+        return { products, initialMinMax }
+    }
+    return []
 }
+export const getProductById = (id) => (state) =>
+    state.products.entities
+        ? state.products.entities.find((prod) => prod._id === id)
+        : null
 
 export default productsReducer

@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
-import api from '../../api'
 import { calcPrice } from '../../utils/calcPrice'
+import { useSelector } from 'react-redux'
+import { getProductById } from '../../store/products'
 
 const ProductPage = ({ productId }) => {
-    const [product, setProduct] = useState()
+    const product = useSelector(getProductById(productId))
     const [quantity, setQuantity] = useState(0)
-
-    useEffect(() => {
-        api.products.getById(+productId).then((data) => setProduct(data))
-    }, [])
 
     const handleIncrement = () => setQuantity((prevState) => prevState + 1)
     const handleDecrement = () => {
@@ -29,7 +26,7 @@ const ProductPage = ({ productId }) => {
                 </div>
                 <div className="productPage__subtitle">
                     <p>rating: {product.rating}</p>
-                    <p>id item: {product.id}</p>
+                    <p>id item: {product._id}</p>
                 </div>
                 <div className="productPage__body item">
                     <div className="item__images">

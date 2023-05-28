@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import api from '../../api'
 import { Link } from 'react-router-dom'
 import './style.scss'
 import { calcPrice } from '../../utils/calcPrice'
@@ -9,28 +8,19 @@ import _ from 'lodash'
 import SortBlock from '../../components/ui/sortBlock'
 import Pagination from '../../components/common/pagination/pagination'
 import { paginate } from '../../utils/paginate'
+import { useSelector } from 'react-redux'
+import { getProductsByCategory } from '../../store/products'
+import { getCategoryNameById } from '../../store/categories'
 
 const CategoryPage = ({ categoryId }) => {
-    const [products, setProducts] = useState()
-    const [priceRange, setPriceRange] = useState()
-    const [initialMinMax, setInitialMinMax] = useState()
+    const categoryTitle = useSelector(getCategoryNameById(categoryId))
+    const { products, initialMinMax } = useSelector(
+        getProductsByCategory(categoryId)
+    )
+    const [priceRange, setPriceRange] = useState(initialMinMax)
     const [sortBy, setSortBy] = useState({ path: 'rating', order: 'desc' })
     const [currentPage, setCurrentPage] = useState(1)
     const pageSize = 4
-
-    useEffect(() => {
-        api.products.getByCategory(categoryId).then((data) => {
-            setProducts(data)
-            setPriceRange([
-                Math.min(...data.map((i) => i.price)),
-                Math.max(...data.map((i) => i.price))
-            ])
-            setInitialMinMax([
-                Math.min(...data.map((i) => i.price)),
-                Math.max(...data.map((i) => i.price))
-            ])
-        })
-    }, [])
 
     const handleMinChange = ({ target }) => {
         setPriceRange((prevState) => [+target.value, prevState[1]])
@@ -48,7 +38,7 @@ const CategoryPage = ({ categoryId }) => {
         setCurrentPage(pageIndex)
     }
 
-    if (products) {
+    if (products && initialMinMax) {
         const filteredProducts =
             priceRange !== initialMinMax
                 ? products.filter(
@@ -70,7 +60,7 @@ const CategoryPage = ({ categoryId }) => {
         return (
             <div className="categoryPage">
                 <div className="titleCat categoryPage__title">
-                    <h1 className="titleCat__title">{categoryId}</h1>
+                    <h1 className="titleCat__title">{categoryTitle}</h1>
                     <div className="titleCat__quantity">
                         {products.length} items
                     </div>
@@ -82,7 +72,7 @@ const CategoryPage = ({ categoryId }) => {
                             {productCrop.map((product) => (
                                 <li
                                     className="product productsList__product"
-                                    key={product.id}
+                                    key={product._id}
                                 >
                                     <div className="product__image">
                                         <img
@@ -92,7 +82,7 @@ const CategoryPage = ({ categoryId }) => {
                                     </div>
                                     <Link
                                         className="product__title"
-                                        to={`${categoryId}/${product.id}`}
+                                        to={`${categoryId}/${product._id}`}
                                     >
                                         {product.title}
                                     </Link>
@@ -105,7 +95,7 @@ const CategoryPage = ({ categoryId }) => {
                                             stock : <span>{product.stock}</span>
                                         </p>
                                         <p>
-                                            item id : <span>{product.id}</span>
+                                            item id : <span>{product._id}</span>
                                         </p>
                                     </div>
                                     <div className="product__actions actions">
@@ -169,8 +159,9 @@ const CategoryPage = ({ categoryId }) => {
                 </div>
             </div>
         )
+    } else {
+        return <h2>Loading...</h2>
     }
-    return 'Loading ...'
 }
 CategoryPage.propTypes = {
     categoryId: PropTypes.string

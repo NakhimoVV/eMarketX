@@ -61,8 +61,9 @@ export const getPopularCategories = (quantity) => (state) => {
     return []
 }
 export const getCategoryNameById = (id) => (state) => {
-    return state.categories.entities
-        ? state.categories.entities.find((cat) => cat._id === id)
-        : null
+    if (state.categories.entities) {
+        return state.categories.entities.find((cat) => cat._id === id)?.title
+    }
+    return null
 }
 export default categoriesReducer
