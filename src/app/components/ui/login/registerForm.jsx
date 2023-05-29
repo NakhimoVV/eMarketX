@@ -4,8 +4,11 @@ import RadioField from '../../common/form/radioField'
 import CheckBoxField from '../../common/form/checkBoxField'
 import * as yup from 'yup'
 import { parceYupError } from '../../../utils/parceYupError'
+import { useDispatch } from 'react-redux'
+import { signUp } from '../../../store/users'
 
 const RegisterForm = () => {
+    const dispatch = useDispatch()
     const [data, setData] = useState({
         name: '',
         surname: '',
@@ -79,9 +82,8 @@ const RegisterForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (isValid) {
-            console.log(data)
-        }
+        if (!isValid) return
+        dispatch(signUp(data))
     }
 
     return (

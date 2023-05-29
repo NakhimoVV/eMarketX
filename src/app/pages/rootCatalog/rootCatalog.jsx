@@ -1,6 +1,5 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-// import api from '../../api'
 import Breadcrumbs from '../../components/common/breadcrumbs'
 import CategoryPage from '../categoryPage/categoryPage'
 import ProductPage from '../productPage/productPage'
@@ -8,13 +7,6 @@ import { useSelector } from 'react-redux'
 import { getCategories } from '../../store/categories'
 
 const RootCatalog = () => {
-    // const [categories, setCategories] = useState()
-
-    // useEffect(() => {
-    //     api.categories.fetchAll().then((data) => {
-    //         setCategories(data)
-    //     })
-    // }, [])
     const categories = useSelector(getCategories())
 
     const { categoryId, productId } = useParams()

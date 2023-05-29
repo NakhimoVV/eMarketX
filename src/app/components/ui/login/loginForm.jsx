@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { validate } from '../../../utils/validator'
 import { validationSchema } from '../../common/form/validationSchema'
 import TextField from '../../common/form/textField'
+import { useDispatch } from 'react-redux'
+import { logIn } from '../../../store/users'
+import { useHistory } from 'react-router-dom'
 
 const LoginForm = () => {
+    const dispatch = useDispatch()
+    const history = useHistory()
     const [data, setData] = useState({ email: '', password: '' })
     const [errors, setErrors] = useState({})
 
@@ -24,9 +29,11 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (isValid) {
-            console.log(data)
-        }
+        if (!isValid) return
+        const redirect = history.location.state
+            ? history.location.state.from.pathname
+            : '/'
+        dispatch(logIn({ payload: data, redirect }))
     }
 
     return (

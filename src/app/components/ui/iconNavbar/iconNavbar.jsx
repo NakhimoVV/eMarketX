@@ -18,15 +18,15 @@ const IconNavbar = () => {
                 Здесь должен быть фрагмент зависящий
                 от Auth? Link/profile : button open portal Modal
             */}
-            <Link className="navbar__link navbar__favorites">
+            <Link to="/favorites" className="navbar__link navbar__favorites">
                 <i className="icon-heart-empty"></i>
                 <span>Favorites</span>
             </Link>
-            <Link className="navbar__link navbar__compare">
+            <Link to="/compare" className="navbar__link navbar__compare">
                 <i className="icon-compare"></i>
                 <span>Compare</span>
             </Link>
-            <Link className="navbar__link navbar__basket">
+            <Link to="/cart" className="navbar__link navbar__basket">
                 <i className="icon-cart"></i>
                 <span>Cart</span>
             </Link>
