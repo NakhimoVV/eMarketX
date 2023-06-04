@@ -1,18 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
+import { useSelector } from 'react-redux'
+import { getCurrentUserData } from '../../store/users'
+import { Link } from 'react-router-dom'
 
 const UserProfile = ({ userId }) => {
-    const [user] = useState({
-        id: '67rdca3eeb7f6fgeed471815',
-        name: 'Will',
-        surname: 'Smith',
-        phone: '9211855383',
-        email: 'willsmith@myfriend.ru',
-        password: 'b2C!9bmE',
-        sex: 'male',
-        city: 'Saint-Petersburg'
-    })
+    const user = useSelector(getCurrentUserData())
     return (
         <section className="profile">
             <p className="profile__title">My profile</p>
@@ -22,7 +16,10 @@ const UserProfile = ({ userId }) => {
             <p className="profile__sex">{user.sex}</p>
             <p className="profile__phone">{user.phone}</p>
             <p className="profile__email">{user.email}</p>
-            <p className="profile__city">{user.city}</p>
+            {user.city && <p className="profile__city">{user.city}</p>}
+            <div className="profile__buttons">
+                <a href="">edit profile</a> / <Link to="/logout">logout</Link>
+            </div>
         </section>
     )
 }

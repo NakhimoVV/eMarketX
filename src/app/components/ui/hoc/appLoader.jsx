@@ -6,15 +6,20 @@ import {
     loadProductsList
 } from '../../../store/products'
 import { loadCategoriesList } from '../../../store/categories'
+import { getIsLoggedIn, loadCurrentUser } from '../../../store/users'
 
 const AppLoader = ({ children }) => {
     const dispatch = useDispatch()
     const productsStatusLoading = useSelector(getProductsLoadingStatus())
+    const isLoggedIn = useSelector(getIsLoggedIn())
 
     useEffect(() => {
         dispatch(loadCategoriesList())
         dispatch(loadProductsList())
-    }, [])
+        if (isLoggedIn) {
+            dispatch(loadCurrentUser())
+        }
+    }, [isLoggedIn])
     if (productsStatusLoading) return 'Loading...'
     return children
 }

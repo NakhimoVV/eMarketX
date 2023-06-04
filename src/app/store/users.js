@@ -5,15 +5,25 @@ import userService from '../services/user.service'
 import history from '../utils/history'
 import generateAuthError from '../utils/generateAuthError'
 
+const initialState = localStorageService.getAccessToken()
+    ? {
+          entities: null,
+          isLoading: true,
+          error: null,
+          auth: { userId: localStorageService.getUserId() },
+          isLoggedIn: true
+      }
+    : {
+          entities: null,
+          isLoading: false,
+          error: null,
+          auth: null,
+          isLoggedIn: false
+      }
+
 const usersSlice = createSlice({
     name: 'users',
-    initialState: {
-        entities: null,
-        isLoading: true,
-        error: null,
-        auth: null,
-        isLoggedIn: false
-    },
+    initialState,
     reducers: {
         authRequestSuccess: (state, action) => {
             state.auth = action.payload
@@ -27,11 +37,35 @@ const usersSlice = createSlice({
                 state.entities = []
             }
             state.entities.push(action.payload)
+        },
+        userRequested: (state) => {
+            state.isLoading = true
+        },
+        userReceved: (state, action) => {
+            state.entities = action.payload
+            state.isLoading = false
+        },
+        userRequestFailed: (state, action) => {
+            state.error = action.payload
+            state.isLoading = false
+        },
+        userLoggedOut: (state) => {
+            state.entities = null
+            state.isLoggedIn = false
+            state.auth = null
         }
     }
 })
 const { reducer: usersReducer, actions } = usersSlice
-const { authRequestSuccess, authRequestFailed, userCreated } = actions
+const {
+    authRequestSuccess,
+    authRequestFailed,
+    userCreated,
+    userRequested,
+    userReceved,
+    userRequestFailed,
+    userLoggedOut
+} = actions
 
 const authRequested = createAction('users/authRequested')
 const userCreateRequested = createAction('users/userCreateRequested')
@@ -90,5 +124,24 @@ function createUser(payload) {
         }
     }
 }
+
+export const logOut = () => (dispatch) => {
+    localStorageService.removeAuthData()
+    dispatch(userLoggedOut())
+    history.push('/')
+}
+
+export const loadCurrentUser = () => async (dispatch) => {
+    dispatch(userRequested())
+    try {
+        const { content } = await userService.getCurrentUser()
+        dispatch(userReceved(content))
+    } catch (error) {
+        dispatch(userRequestFailed(error.message))
+    }
+}
+
+export const getIsLoggedIn = () => (state) => state.users.isLoggedIn
+export const getCurrentUserData = () => (state) => state.users.entities
 
 export default usersReducer

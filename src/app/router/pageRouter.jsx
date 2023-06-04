@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify'
 import withPopup from '../components/ui/hoc/withPopup'
 import { PopupProvider } from '../hooks/useTriggerPopup'
 import UserProfile from '../pages/userProfile/userProfile'
+import LogOut from '../layouts/logOut'
 
 const PageRouter = () => {
     const ComponentWithPopup = withPopup(Login)
@@ -26,6 +27,7 @@ const PageRouter = () => {
                                 component={RootCatalog}
                             />
                             <Route path="/login" component={Login} />
+                            <Route path={'/logout'} component={LogOut} />
                             <Route path="/" exact component={MainPage} />
                             <Redirect to="/" />
                         </Switch>

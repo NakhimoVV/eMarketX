@@ -7,9 +7,7 @@ const productsSlice = createSlice({
         entities: null,
         isLoading: true,
         error: null,
-        lastFetch: null,
-        minPrice: null,
-        maxPrice: null
+        lastFetch: null
     },
     reducers: {
         productsRequested: (state) => {

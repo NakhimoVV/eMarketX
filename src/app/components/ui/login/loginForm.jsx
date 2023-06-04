@@ -5,12 +5,14 @@ import TextField from '../../common/form/textField'
 import { useDispatch } from 'react-redux'
 import { logIn } from '../../../store/users'
 import { useHistory } from 'react-router-dom'
+import { useTriggerPopup } from '../../../hooks/useTriggerPopup'
 
 const LoginForm = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [data, setData] = useState({ email: '', password: '' })
     const [errors, setErrors] = useState({})
+    const { setOpenPopup } = useTriggerPopup()
 
     useEffect(() => {
         const errors = validate(data, validationSchema)
@@ -34,6 +36,7 @@ const LoginForm = () => {
             ? history.location.state.from.pathname
             : '/'
         dispatch(logIn({ payload: data, redirect }))
+        setOpenPopup(false)
     }
 
     return (

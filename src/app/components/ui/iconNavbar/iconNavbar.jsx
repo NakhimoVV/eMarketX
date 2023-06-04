@@ -2,22 +2,29 @@ import React from 'react'
 import './style.scss'
 import { Link } from 'react-router-dom'
 import { useTriggerPopup } from '../../../hooks/useTriggerPopup'
+import { useSelector } from 'react-redux'
+import { getCurrentUserData } from '../../../store/users'
 
 const IconNavbar = () => {
     const { setOpenPopup } = useTriggerPopup()
+    // const isLoggedIn = useSelector(getIsLoggedIn())
+    const currentUser = useSelector(getCurrentUserData())
     return (
         <nav className="navbar">
-            <button
-                onClick={() => setOpenPopup(true)}
-                className="navbar__link navbar__user"
-            >
-                <i className="icon-user"></i>
-                <span>LogIn</span>
-            </button>
-            {/*
-                Здесь должен быть фрагмент зависящий
-                от Auth? Link/profile : button open portal Modal
-            */}
+            {currentUser ? (
+                <Link to="/profile" className="navbar__link navbar__user">
+                    <i className="icon-user"></i>
+                    <span>{currentUser.name}</span>
+                </Link>
+            ) : (
+                <button
+                    onClick={() => setOpenPopup(true)}
+                    className="navbar__link navbar__user"
+                >
+                    <i className="icon-user"></i>
+                    <span>LogIn</span>
+                </button>
+            )}
             <Link to="/favorites" className="navbar__link navbar__favorites">
                 <i className="icon-heart-empty"></i>
                 <span>Favorites</span>

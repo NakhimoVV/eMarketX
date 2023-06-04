@@ -2,14 +2,17 @@ const TOKEN_KEY = 'jwt-token'
 const REFRESH_KEY = 'jwt-refresh-token'
 const EXPIRES_KEY = 'jwt-expires'
 const USERID_KEY = 'user-local-id'
+const VIEW_PROD = 'viewProducts'
 
+export function setView(viewType) {
+    localStorage.setItem(VIEW_PROD, viewType)
+}
 export function setTokens({
     idToken,
     refreshToken,
     localId,
     expiresIn = 3600
 }) {
-    //переводим expiresIn из секунд в милисекунды
     const expiresDate = new Date().getTime() + expiresIn * 1000
     localStorage.setItem(USERID_KEY, localId)
     localStorage.setItem(TOKEN_KEY, idToken)
@@ -31,9 +34,11 @@ export function getRefreshToken() {
 export function getTokenExpiresDate() {
     return localStorage.getItem(EXPIRES_KEY)
 }
-//для того чтобы получать доступ
 export function getUserId() {
     return localStorage.getItem(USERID_KEY)
+}
+export function getView() {
+    return localStorage.getItem(VIEW_PROD)
 }
 
 const localStorageService = {
@@ -42,6 +47,8 @@ const localStorageService = {
     getRefreshToken,
     getTokenExpiresDate,
     getUserId,
-    removeAuthData
+    removeAuthData,
+    setView,
+    getView
 }
 export default localStorageService

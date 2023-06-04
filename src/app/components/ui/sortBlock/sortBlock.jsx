@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
 
-const SortBlock = ({ onSort, selectedSort }) => {
+const SortBlock = ({ onSort, selectedSort, onChange, viewType }) => {
     const sortLabels = [
         { path: 'price', label: 'price' },
         { path: 'rating', label: 'rating' },
@@ -51,19 +51,31 @@ const SortBlock = ({ onSort, selectedSort }) => {
                 ))}
             </div>
             <div className="view sortBlock__view">
-                <div className="view__list">
+                <button
+                    className={
+                        'view__list' + (viewType === 'vList' ? ' active' : '')
+                    }
+                    onClick={() => onChange('vList')}
+                >
                     <i className="icon-list"></i>
-                </div>
-                <div className="view__tile">
+                </button>
+                <button
+                    className={
+                        'view__tile' + (viewType === 'vCard' ? ' active' : '')
+                    }
+                    onClick={() => onChange('vCard')}
+                >
                     <i className="icon-tile"></i>
-                </div>
+                </button>
             </div>
         </div>
     )
 }
 SortBlock.propTypes = {
     onSort: PropTypes.func.isRequired,
-    selectedSort: PropTypes.object.isRequired
+    selectedSort: PropTypes.object.isRequired,
+    onChange: PropTypes.func,
+    viewType: PropTypes.string
 }
 
 export default SortBlock

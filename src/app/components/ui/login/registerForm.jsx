@@ -6,6 +6,7 @@ import * as yup from 'yup'
 import { parceYupError } from '../../../utils/parceYupError'
 import { useDispatch } from 'react-redux'
 import { signUp } from '../../../store/users'
+import { useTriggerPopup } from '../../../hooks/useTriggerPopup'
 
 const RegisterForm = () => {
     const dispatch = useDispatch()
@@ -19,6 +20,7 @@ const RegisterForm = () => {
         licence: false
     })
     const [errors, setErrors] = useState({})
+    const { setOpenPopup } = useTriggerPopup()
 
     const isValid = Object.keys(errors).length === 0
 
@@ -84,6 +86,7 @@ const RegisterForm = () => {
         e.preventDefault()
         if (!isValid) return
         dispatch(signUp(data))
+        setOpenPopup(false)
     }
 
     return (

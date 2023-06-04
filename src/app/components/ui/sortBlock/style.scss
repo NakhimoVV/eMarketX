@@ -32,10 +32,13 @@
     display: flex;
     gap: 10px;
     font-size: rem(20);
+    color: $transparent;
 
-    &__list {
+    &__list.active {
+        color: #000;
     }
 
-    &__tile {
+    &__tile.active {
+        color: #000;
     }
 }

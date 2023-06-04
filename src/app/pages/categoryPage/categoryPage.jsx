@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import './style.scss'
-import { calcPrice } from '../../utils/calcPrice'
 import PriceFilter from '../../components/ui/priceFilter'
 import _ from 'lodash'
 import SortBlock from '../../components/ui/sortBlock'
@@ -11,6 +9,8 @@ import { paginate } from '../../utils/paginate'
 import { useSelector } from 'react-redux'
 import { getProductsByCategory } from '../../store/products'
 import { getCategoryNameById } from '../../store/categories'
+import ProductBlock from '../../components/ui/product/productBlock'
+import localStorageService from '../../services/localStorage.service'
 
 const CategoryPage = ({ categoryId }) => {
     const categoryTitle = useSelector(getCategoryNameById(categoryId))
@@ -36,6 +36,14 @@ const CategoryPage = ({ categoryId }) => {
     }
     const handlePageChange = (pageIndex) => {
         setCurrentPage(pageIndex)
+    }
+
+    const [viewType, setViewType] = useState(
+        localStorageService.getView() || 'vList'
+    )
+    const changeView = (value) => {
+        setViewType(value)
+        localStorageService.setView(value)
     }
 
     if (products && initialMinMax) {
@@ -67,67 +75,17 @@ const CategoryPage = ({ categoryId }) => {
                 </div>
                 <div className="bodyCat categoryPage__body">
                     <div className="bodyCat__list">
-                        <SortBlock onSort={handleSort} selectedSort={sortBy} />
-                        <ul className="productsList">
-                            {productCrop.map((product) => (
-                                <li
-                                    className="product productsList__product"
-                                    key={product._id}
-                                >
-                                    <div className="product__image">
-                                        <img
-                                            src={product.images[0]}
-                                            alt="product"
-                                        />
-                                    </div>
-                                    <Link
-                                        className="product__title"
-                                        to={`${categoryId}/${product._id}`}
-                                    >
-                                        {product.title}
-                                    </Link>
-                                    <div className="product__info">
-                                        <p>
-                                            rating :{' '}
-                                            <span>{product.rating}</span>
-                                        </p>
-                                        <p>
-                                            stock : <span>{product.stock}</span>
-                                        </p>
-                                        <p>
-                                            item id : <span>{product._id}</span>
-                                        </p>
-                                    </div>
-                                    <div className="product__actions actions">
-                                        <button className="actions__button_compare">
-                                            <i className="icon-compare"></i>{' '}
-                                            <span>Compare</span>
-                                        </button>
-                                        <button className="actions__button_favorite">
-                                            <i className="icon-heart-empty"></i>{' '}
-                                            <span>Favorites</span>
-                                        </button>
-                                    </div>
-                                    <div className="product__buy">
-                                        <div className="product__price">
-                                            <p>
-                                                {calcPrice(
-                                                    product.price,
-                                                    product.discountPercentage
-                                                )}
-                                            </p>
-                                            <p>
-                                                <span>{product.price}</span> $
-                                            </p>
-                                        </div>
-                                        <button className="product__button_toCart btn">
-                                            <i className="icon-to-cart"></i>{' '}
-                                            <span>To cart</span>
-                                        </button>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
+                        <SortBlock
+                            onSort={handleSort}
+                            selectedSort={sortBy}
+                            onChange={changeView}
+                            viewType={viewType}
+                        />
+                        <ProductBlock
+                            products={productCrop}
+                            categoryId={categoryId}
+                            viewType={viewType}
+                        />
                         <nav className="bodyCat__pagination">
                             <Pagination
                                 itemsCount={count}
