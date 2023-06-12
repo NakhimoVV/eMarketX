@@ -1,22 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
 import { calcPrice } from '../../utils/calcPrice'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getProductById } from '../../store/products'
+import { addToCart } from '../../store/cart'
+import QuantityInput from '../../components/common/quantityInput'
+import { useQuantity } from '../../hooks/useQuantity'
 
 const ProductPage = ({ productId }) => {
+    const dispatch = useDispatch()
     const product = useSelector(getProductById(productId))
-    const [quantity, setQuantity] = useState(0)
 
-    const handleIncrement = () => setQuantity((prevState) => prevState + 1)
-    const handleDecrement = () => {
-        setQuantity((prevState) => (prevState > 0 ? prevState - 1 : prevState))
-    }
-
-    const handleChange = ({ target }) => {
-        setQuantity(+target.value)
-    }
+    const { quantity, handleChange, handleIncrement, handleDecrement } =
+        useQuantity(0)
 
     if (product) {
         return (
@@ -58,30 +55,27 @@ const ProductPage = ({ productId }) => {
                                 <span>{product.price}</span>$
                             </p>
                         </div>
-                        <button className="target__button_tocart btn">
+                        <button
+                            className="target__button_tocart btn"
+                            onClick={() =>
+                                dispatch(
+                                    addToCart({
+                                        id: product._id,
+                                        count: quantity
+                                    })
+                                )
+                            }
+                        >
                             <i className="icon-to-cart"></i>{' '}
                             <span>To cart</span>
                         </button>
-                        <div className="target__quantity quantity">
-                            <button
-                                className="quantity__button quantity__button_decrement"
-                                onClick={handleDecrement}
-                            >
-                                –
-                            </button>
-                            <input
-                                className="quantity__input"
-                                type="number"
-                                min={0}
+                        <div className="target__quantity">
+                            <QuantityInput
                                 value={quantity}
                                 onChange={handleChange}
-                            ></input>
-                            <button
-                                className="quantity__button quantity__button_increment"
-                                onClick={handleIncrement}
-                            >
-                                +
-                            </button>
+                                increment={handleIncrement}
+                                decrement={handleDecrement}
+                            />
                         </div>
                         <div className="target__actions actions">
                             <button className="actions__button_compare">

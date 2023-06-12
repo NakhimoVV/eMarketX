@@ -10,6 +10,9 @@ import withPopup from '../components/ui/hoc/withPopup'
 import { PopupProvider } from '../hooks/useTriggerPopup'
 import UserProfile from '../pages/userProfile/userProfile'
 import LogOut from '../layouts/logOut'
+import Cart from '../layouts/cart'
+import Compare from '../layouts/compare'
+import Favorites from '../layouts/favorites'
 
 const PageRouter = () => {
     const ComponentWithPopup = withPopup(Login)
@@ -26,6 +29,9 @@ const PageRouter = () => {
                                 path="/catalog/:categoryId?/:productId?"
                                 component={RootCatalog}
                             />
+                            <Route path="/favorites" component={Favorites} />
+                            <Route path="/compare" component={Compare} />
+                            <Route path="/cart" component={Cart} />
                             <Route path="/login" component={Login} />
                             <Route path={'/logout'} component={LogOut} />
                             <Route path="/" exact component={MainPage} />

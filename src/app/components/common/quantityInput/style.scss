@@ -1,0 +1,45 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+@import 'src/app/scss/variables';
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+.quantity {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(152, 202, 250, 0.1);
+    border: 1px solid $blue;
+    border-radius: 5px;
+    height: 30px;
+
+    &__button {
+        padding: 0px 10px;
+        height: inherit;
+
+        &_decrement {
+            border-right: 1px solid $blue;
+        }
+
+        &_increment {
+            border-left: 1px solid $blue;
+        }
+    }
+
+    &__input {
+        background-color: rgba(152, 202, 250, 0.1);
+        height: inherit;
+        text-align: center;
+        width: 70px;
+    }
+}
