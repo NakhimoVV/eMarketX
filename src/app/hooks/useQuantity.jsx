@@ -9,5 +9,11 @@ export const useQuantity = (initial) => {
     const handleChange = ({ target }) => {
         setQuantity(+target.value)
     }
-    return { quantity, handleIncrement, handleDecrement, handleChange }
+    return {
+        quantity,
+        handleIncrement,
+        handleDecrement,
+        handleChange,
+        setQuantity
+    }
 }

@@ -3,6 +3,31 @@ const REFRESH_KEY = 'jwt-refresh-token'
 const EXPIRES_KEY = 'jwt-expires'
 const USERID_KEY = 'user-local-id'
 const VIEW_PROD = 'viewProducts'
+const CART_GUEST = 'cartGuest'
+
+function getLocalCart() {
+    const cart = localStorage.getItem(CART_GUEST)
+    return JSON.parse(cart) || []
+}
+
+function setLocalCart(array) {
+    localStorage.setItem(CART_GUEST, JSON.stringify(array))
+}
+
+export function addToLocalCart(item) {
+    const cartNow = getLocalCart()
+    const foundItem = cartNow.find((itemNow) => itemNow.id === item.id)
+    if (!foundItem) {
+        setLocalCart([...cartNow, item])
+    } else {
+        const updateCart = cartNow.map((itemNow) => {
+            if (itemNow.id === item.id) {
+                return { ...itemNow, count: itemNow.count + 1 }
+            } else return itemNow
+        })
+        setLocalCart(updateCart)
+    }
+}
 
 export function setView(viewType) {
     localStorage.setItem(VIEW_PROD, viewType)
@@ -49,6 +74,7 @@ const localStorageService = {
     getUserId,
     removeAuthData,
     setView,
-    getView
+    getView,
+    addToLocalCart
 }
 export default localStorageService

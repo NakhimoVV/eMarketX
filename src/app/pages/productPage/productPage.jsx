@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
 import { calcPrice } from '../../utils/calcPrice'
@@ -12,8 +12,25 @@ const ProductPage = ({ productId }) => {
     const dispatch = useDispatch()
     const product = useSelector(getProductById(productId))
 
-    const { quantity, handleChange, handleIncrement, handleDecrement } =
-        useQuantity(0)
+    const {
+        quantity,
+        handleChange,
+        handleIncrement,
+        handleDecrement,
+        setQuantity
+    } = useQuantity(0)
+
+    const [isDisabled, setDisabled] = useState(false)
+
+    const handleClickOnToCart = () => {
+        dispatch(
+            addToCart({
+                id: product._id
+            })
+        )
+        setDisabled(true)
+        setQuantity(1)
+    }
 
     if (product) {
         return (
@@ -57,14 +74,8 @@ const ProductPage = ({ productId }) => {
                         </div>
                         <button
                             className="target__button_tocart btn"
-                            onClick={() =>
-                                dispatch(
-                                    addToCart({
-                                        id: product._id,
-                                        count: quantity
-                                    })
-                                )
-                            }
+                            onClick={handleClickOnToCart}
+                            disabled={isDisabled}
                         >
                             <i className="icon-to-cart"></i>{' '}
                             <span>To cart</span>
