@@ -1,29 +1,20 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
 import { calcPrice } from '../../utils/calcPrice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductById } from '../../store/products'
-import {
-    addToCart,
-    getCoutItemById,
-    minusItemFromCart,
-    onChangeCart
-} from '../../store/cart'
+import { addToCart, minusItemFromCart, onChangeCart } from '../../store/cart'
 import QuantityInput from '../../components/common/quantityInput'
+import { useToCart } from '../../hooks/useToCart'
 
 const ProductPage = ({ productId }) => {
     const dispatch = useDispatch()
     const product = useSelector(getProductById(productId))
-    const cartItem = useSelector(getCoutItemById(productId))
-    const addedCount = cartItem ? cartItem.count : 0
-
-    const [isDisabled, setDisabled] = useState(false)
-
-    const handleClickOnToCart = () => {
-        dispatch(addToCart({ id: product._id, price: product.price }))
-        setDisabled(true)
-    }
+    const { isDisabled, handleClickOnToCart, addedCount } = useToCart(
+        product._id,
+        product.price
+    )
 
     const handleChange = useCallback((e) => {
         const { value } = e.target
@@ -35,10 +26,6 @@ const ProductPage = ({ productId }) => {
     const handleDecrement = () => {
         dispatch(minusItemFromCart(product._id))
     }
-
-    useEffect(() => {
-        addedCount > 0 ? setDisabled(true) : setDisabled(false)
-    }, [addedCount])
 
     if (product) {
         return (

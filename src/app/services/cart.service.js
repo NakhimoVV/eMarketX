@@ -1,10 +1,14 @@
 import httpService from './http.service'
+import localStorageService from './localStorage.service'
 
-const cartEndPoint = 'cart/'
+const cartEndPoint = 'carts/'
 
 const cartService = {
-    create: async (payload) => {
-        const { data } = await httpService.post(cartEndPoint, payload)
+    update: async (payload) => {
+        const { data } = await httpService.patch(
+            cartEndPoint + localStorageService.getUserId(),
+            payload
+        )
         return data
     }
 }

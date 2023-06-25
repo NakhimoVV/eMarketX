@@ -1,5 +1,6 @@
 import React from 'react'
 import PopularCategories from '../components/ui/popularCategories'
+import { Link } from 'react-router-dom'
 // import useMockData from '../utils/mockData'
 
 const MainPage = () => {
@@ -9,7 +10,9 @@ const MainPage = () => {
     // }
     return (
         <>
-            <h1>Главная страница</h1>
+            <Link to="/catalog" className="titleLink">
+                All categories
+            </Link>
             {/* <button onClick={handleClick}>Инициализировать</button> */}
             <PopularCategories />
         </>

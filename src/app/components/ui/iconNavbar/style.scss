@@ -41,5 +41,17 @@
     }
 
     &__basket {
+        position: relative;
     }
+}
+.basketQuantity {
+    position: absolute;
+    right: -20%;
+    top: -15%;
+    padding: 2px 6px;
+    border-radius: 50%;
+    border: 2px solid $blue;
+    background-color: rgba(152, 202, 250, 1);
+    color: black !important;
+    font-weight: bold;
 }

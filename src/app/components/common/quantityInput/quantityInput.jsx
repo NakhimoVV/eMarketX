@@ -14,7 +14,7 @@ const QuantityInput = ({ value, onChange, increment, decrement }) => {
             <input
                 className="quantity__input"
                 type="number"
-                min={0}
+                min={1}
                 value={value}
                 onChange={onChange}
             ></input>

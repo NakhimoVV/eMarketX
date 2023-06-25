@@ -3,8 +3,14 @@ import PropTypes from 'prop-types'
 import './style.scss'
 import { Link } from 'react-router-dom'
 import { calcPrice } from '../../../../utils/calcPrice'
+import { useToCart } from '../../../../hooks/useToCart'
 
 const ProductListItem = ({ product, categoryId }) => {
+    const { isDisabled, handleClickOnToCart } = useToCart(
+        product._id,
+        product.price
+    )
+
     return (
         <li className="product-vList" key={product._id}>
             <div className="product-vList__image">
@@ -44,7 +50,11 @@ const ProductListItem = ({ product, categoryId }) => {
                         <span>{product.price}</span> $
                     </p>
                 </div>
-                <button className="product-vList__button_toCart btn">
+                <button
+                    className="product-vList__button_toCart btn"
+                    onClick={handleClickOnToCart}
+                    disabled={isDisabled}
+                >
                     <i className="icon-to-cart"></i> <span>To cart</span>
                 </button>
             </div>

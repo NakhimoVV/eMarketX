@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom'
 import { useTriggerPopup } from '../../../hooks/useTriggerPopup'
 import { useSelector } from 'react-redux'
 import { getCurrentUserData } from '../../../store/users'
+import { getCartQuantity } from '../../../store/cart'
 
 const IconNavbar = () => {
     const { setOpenPopup } = useTriggerPopup()
+    const cartQuantity = useSelector(getCartQuantity())
     // const isLoggedIn = useSelector(getIsLoggedIn())
     const currentUser = useSelector(getCurrentUserData())
     return (
@@ -36,6 +38,9 @@ const IconNavbar = () => {
             <Link to="/cart" className="navbar__link navbar__basket">
                 <i className="icon-cart"></i>
                 <span>Cart</span>
+                {cartQuantity > 0 && (
+                    <span className="basketQuantity">{cartQuantity}</span>
+                )}
             </Link>
         </nav>
     )

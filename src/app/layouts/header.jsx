@@ -8,20 +8,20 @@ const Header = () => {
         <header className="header">
             <div className="header__container">
                 <div className="header__top">
-                    <ul className="header__entry-point entry-point">
+                    {/* <ul className="header__entry-point entry-point">
                         <li className="entry-point__item">Saint-Petersburg</li>
                         <li className="entry-point__item">Actions</li>
                         <li className="entry-point__item">Return</li>
                         <li className="entry-point__item">The shops</li>
                         <li className="entry-point__item">Phone</li>
-                    </ul>
+                    </ul> */}
                 </div>
                 <div className="header__bot">
                     <div className="header__nav-element nav-element">
                         <div className="nav-element__logo">
                             <Logo />
                         </div>
-                        <div className="nav-element__burger-menu">
+                        {/* <div className="nav-element__burger-menu">
                             <div className="burger-menu__icon icon-menu">
                                 <span></span>
                                 <span></span>
@@ -61,7 +61,7 @@ const Header = () => {
                                     </li>
                                 </ul>
                             </nav>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="header__search" id="searchBlock">
                         <SearchField />

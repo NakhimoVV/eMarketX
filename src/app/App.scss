@@ -60,6 +60,13 @@
         }
     }
 }
+.titleLink {
+    font-family: 'Prompt';
+    font-size: rem(20);
+    &:hover {
+        color: $blue;
+    }
+}
 
 @import 'scss/header';
 @import 'scss/main';

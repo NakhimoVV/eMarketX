@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
-// import localStorageService from '../services/localStorage.service'
+// import cartService from '../services/cart.service'
 
+// items= [{id:'dsada', count: 3, price: 323}]
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
@@ -28,6 +29,13 @@ const cartSlice = createSlice({
         },
         removeItem: (state, action) => {
             state.items = state.items.filter((obj) => obj.id !== action.payload)
+            state.quantity = state.items.reduce(
+                (sum, obj) => obj.count + sum,
+                0
+            )
+            state.totalPrice = state.items.reduce((sum, obj) => {
+                return obj.price * obj.count + sum
+            }, 0)
         },
         cleanCart: (state) => {
             state.items = []
@@ -39,12 +47,17 @@ const cartSlice = createSlice({
                 (obj) => obj.id === action.payload.id
             )
             if (findItem) {
-                findItem.count = action.payload.value
+                if (action.payload.value > 0) {
+                    findItem.count = action.payload.value
+                }
             }
             state.quantity = state.items.reduce(
                 (sum, obj) => obj.count + sum,
                 0
             )
+            state.totalPrice = state.items.reduce((sum, obj) => {
+                return obj.price * obj.count + sum
+            }, 0)
         },
         minusOne: (state, action) => {
             const findItem = state.items.find(
@@ -69,12 +82,24 @@ const cartSlice = createSlice({
 })
 
 const { reducer: cartReducer, actions } = cartSlice
-const { addItem, onChange, minusOne, removeItem } = actions
+const { addItem, onChange, minusOne, removeItem, cleanCart } = actions
 
-export const addToCart = (productId) => (dispatch) => {
-    // localStorageService.addToLocalCart(product)
-    dispatch(addItem(productId))
+// const cartUpdateRequested = createAction('cart/cartUpdateRequested')
+// const cartUpdateFailed = createAction('cart/cartUpdateFailed')
+
+export const addToCart = (payload) => (dispatch) => {
+    dispatch(addItem(payload))
 }
+// export const addToCart = (payload) => async (dispatch) => {
+//     dispatch(cartUpdateRequested())
+//     try {
+//         const { content } = await cartService.update(payload)
+//         console.log(content)
+//         dispatch(addItem(payload))
+//     } catch (error) {
+//         dispatch(cartUpdateFailed(error.message))
+//     }
+// }
 
 export const onChangeCart = (payload) => (dispatch) => {
     dispatch(onChange(payload))
@@ -85,9 +110,13 @@ export const minusItemFromCart = (productId) => (dispatch) => {
 export const removeItemFromCart = (productId) => (dispatch) => {
     dispatch(removeItem(productId))
 }
+export const fullCleanCart = () => (dispatch) => {
+    dispatch(cleanCart())
+}
 
 export const getCartList = () => (state) => state.cart.items
 export const getTotalPrice = () => (state) => state.cart.totalPrice
+export const getCartQuantity = () => (state) => state.cart.quantity
 export const getCoutItemById = (id) => (state) =>
     state.cart.items.find((obj) => obj.id === id)
 

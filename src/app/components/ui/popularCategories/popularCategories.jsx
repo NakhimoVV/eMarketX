@@ -16,7 +16,7 @@ const PopularCategories = () => {
 
     return (
         <section className="categories">
-            <div className="categories__title">Popular categories (All)</div>
+            <div className="categories__title">Popular categories</div>
             <div className="categories__list">
                 {categories &&
                     categories.map((cat) => (

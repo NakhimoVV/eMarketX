@@ -8,6 +8,9 @@
         font-family: 'Prompt';
         font-size: rem(30);
         margin: 0px 0px 20px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     &__body {
@@ -20,6 +23,7 @@
 
 .cartTotal {
     flex: 0 1 30%;
+    padding: 10px;
     &__top {
         margin: 0px 0px 20px 0px;
     }
@@ -40,4 +44,13 @@
     }
 }
 .checkout-btn {
+}
+.btn-clean {
+    font-size: rem(16);
+    color: $blue;
+    font-weight: 600;
+    display: inline-flex;
+    &:hover {
+        color: $orange;
+    }
 }

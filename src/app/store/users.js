@@ -143,5 +143,6 @@ export const loadCurrentUser = () => async (dispatch) => {
 
 export const getIsLoggedIn = () => (state) => state.users.isLoggedIn
 export const getCurrentUserData = () => (state) => state.users.entities
+export const getCurrentUserId = () => (state) => state.users.auth.userId
 
 export default usersReducer
