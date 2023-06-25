@@ -2,8 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
 import ProductCartItem from '../../components/ui/product/productCartItem/productCartItem'
+import { useSelector } from 'react-redux'
+import { getTotalPrice } from '../../store/cart'
 
 const CartPage = ({ cartList }) => {
+    const totalPrice = useSelector(getTotalPrice())
     return (
         <section className="cart">
             <div className="cart__title">
@@ -23,7 +26,7 @@ const CartPage = ({ cartList }) => {
                     <div className="cartTotal__top total">
                         <p className="total__title">Total:</p>
                         <p className="total__value">
-                            <span>15235</span> $
+                            <span>{totalPrice}</span> $
                         </p>
                     </div>
                     <button className="cartTotal__bot checkout-btn btn">

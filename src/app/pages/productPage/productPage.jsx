@@ -1,36 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
 import { calcPrice } from '../../utils/calcPrice'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductById } from '../../store/products'
-import { addToCart } from '../../store/cart'
+import {
+    addToCart,
+    getCoutItemById,
+    minusItemFromCart,
+    onChangeCart
+} from '../../store/cart'
 import QuantityInput from '../../components/common/quantityInput'
-import { useQuantity } from '../../hooks/useQuantity'
 
 const ProductPage = ({ productId }) => {
     const dispatch = useDispatch()
     const product = useSelector(getProductById(productId))
-
-    const {
-        quantity,
-        handleChange,
-        handleIncrement,
-        handleDecrement,
-        setQuantity
-    } = useQuantity(0)
+    const cartItem = useSelector(getCoutItemById(productId))
+    const addedCount = cartItem ? cartItem.count : 0
 
     const [isDisabled, setDisabled] = useState(false)
 
     const handleClickOnToCart = () => {
-        dispatch(
-            addToCart({
-                id: product._id
-            })
-        )
+        dispatch(addToCart({ id: product._id, price: product.price }))
         setDisabled(true)
-        setQuantity(1)
     }
+
+    const handleChange = useCallback((e) => {
+        const { value } = e.target
+        dispatch(onChangeCart({ id: product._id, value: Number(value) }))
+    }, [])
+    const handleIncrement = () => {
+        dispatch(addToCart({ id: product._id }))
+    }
+    const handleDecrement = () => {
+        dispatch(minusItemFromCart(product._id))
+    }
+
+    useEffect(() => {
+        addedCount > 0 ? setDisabled(true) : setDisabled(false)
+    }, [addedCount])
 
     if (product) {
         return (
@@ -80,14 +88,17 @@ const ProductPage = ({ productId }) => {
                             <i className="icon-to-cart"></i>{' '}
                             <span>To cart</span>
                         </button>
-                        <div className="target__quantity">
-                            <QuantityInput
-                                value={quantity}
-                                onChange={handleChange}
-                                increment={handleIncrement}
-                                decrement={handleDecrement}
-                            />
-                        </div>
+                        {addedCount > 0 && (
+                            <div className="target__quantity">
+                                <QuantityInput
+                                    value={addedCount}
+                                    onChange={handleChange}
+                                    increment={handleIncrement}
+                                    decrement={handleDecrement}
+                                />
+                            </div>
+                        )}
+
                         <div className="target__actions actions">
                             <button className="actions__button_compare">
                                 <i className="icon-compare"></i>{' '}

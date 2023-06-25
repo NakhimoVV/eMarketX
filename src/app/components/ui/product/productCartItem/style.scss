@@ -17,6 +17,9 @@
             object-fit: contain;
         }
     }
+    &__delete {
+        color: $orange;
+    }
 
     &__title {
     }
