@@ -10,12 +10,13 @@ const getMockDataProducts = async () => {
     })
     return data
 }
-
+// Для запуска обновления mock data product
+// Запускаем ран "node src/app/api/getmockdata.js"
 getMockDataProducts().then((data) => {
     const { products } = data
     const updatedProducts = products.map((item) => {
         delete item.id
-        item._id = uuidv4().replace(/-/g, '')
+        item._id = uuidv4().replace(/-/g, '').slice(0, 10)
         const findedCat = categories.find((cat) => cat.title === item.category)
         category = findedCat._id
         return { ...item, category }
