@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Compare = () => {
-    return <>compare</>
+    return <>Compare is empty</>
 }
 
 export default Compare

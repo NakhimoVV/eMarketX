@@ -68,4 +68,6 @@ export const getProductById = (id) => (state) =>
         ? state.products.entities.find((prod) => prod._id === id)
         : null
 
+export const getAllProducts = () => (state) => state.products.entities
+
 export default productsReducer

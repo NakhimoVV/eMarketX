@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Favorites = () => {
-    return <>favorites</>
+    return <>Favorites is empty</>
 }
 
 export default Favorites

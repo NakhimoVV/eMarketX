@@ -5,20 +5,20 @@ import { Link } from 'react-router-dom'
 import { calcPrice } from '../../../../utils/calcPrice'
 import { useToCart } from '../../../../hooks/useToCart'
 
-const ProductListItem = ({ product, categoryId }) => {
+const ProductListItem = ({ product }) => {
     const { isDisabled, handleClickOnToCart } = useToCart(
         product._id,
         product.price
     )
 
     return (
-        <li className="product-vList" key={product._id}>
+        <li className="product-vList">
             <div className="product-vList__image">
                 <img src={product.images[0]} alt="product" />
             </div>
             <Link
                 className="product-vList__title"
-                to={`${categoryId}/${product._id}`}
+                to={`${product.category}/${product._id}`}
             >
                 {product.title}
             </Link>
@@ -62,8 +62,7 @@ const ProductListItem = ({ product, categoryId }) => {
     )
 }
 ProductListItem.propTypes = {
-    product: PropTypes.object,
-    categoryId: PropTypes.string
+    product: PropTypes.object
 }
 
 export default ProductListItem

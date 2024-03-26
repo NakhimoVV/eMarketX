@@ -40,10 +40,10 @@ const useMockData = () => {
 
     async function initialize() {
         try {
-            for (const cat of categories) {
-                await httpService.put('categories/' + cat._id, cat)
-                incrementCount()
-            }
+            // for (const cat of categories) {
+            //     await httpService.put('categories/' + cat._id, cat)
+            //     incrementCount()
+            // }
             for (const prod of products) {
                 await httpService.put('products/' + prod._id, prod)
                 incrementCount()

@@ -4,22 +4,14 @@ import './style.scss'
 import ProductCard from '../productCard'
 import ProductListItem from '../productListItem'
 
-const ProductBlock = ({ products, categoryId, viewType }) => {
+const ProductBlock = ({ products, viewType }) => {
     return (
         <ul className={'products-' + viewType}>
             {products.map((product) =>
                 viewType === 'vList' ? (
-                    <ProductListItem
-                        key={product._id}
-                        product={product}
-                        categoryId={categoryId}
-                    />
+                    <ProductListItem key={product._id} product={product} />
                 ) : (
-                    <ProductCard
-                        key={product._id}
-                        product={product}
-                        categoryId={categoryId}
-                    />
+                    <ProductCard key={product._id} product={product} />
                 )
             )}
         </ul>
@@ -27,7 +19,6 @@ const ProductBlock = ({ products, categoryId, viewType }) => {
 }
 ProductBlock.propTypes = {
     products: PropTypes.array,
-    categoryId: PropTypes.string,
     viewType: PropTypes.string
 }
 

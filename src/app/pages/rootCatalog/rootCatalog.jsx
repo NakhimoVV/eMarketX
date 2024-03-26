@@ -3,12 +3,9 @@ import { useParams } from 'react-router-dom'
 import Breadcrumbs from '../../components/common/breadcrumbs'
 import CategoryPage from '../categoryPage/categoryPage'
 import ProductPage from '../productPage/productPage'
-import { useSelector } from 'react-redux'
-import { getCategories } from '../../store/categories'
+import CatalogPage from '../catalogPage/catalogPage'
 
 const RootCatalog = () => {
-    const categories = useSelector(getCategories())
-
     const { categoryId, productId } = useParams()
 
     return (
@@ -21,8 +18,7 @@ const RootCatalog = () => {
                     <CategoryPage categoryId={categoryId} />
                 )
             ) : (
-                categories &&
-                categories.map((cat) => <p key={cat._id}>{cat.title}</p>)
+                <CatalogPage />
             )}
         </section>
     )

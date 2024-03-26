@@ -5,14 +5,14 @@ import { calcPrice } from '../../../../utils/calcPrice'
 import './style.scss'
 import { useToCart } from '../../../../hooks/useToCart'
 
-const ProductCard = ({ product, categoryId }) => {
+const ProductCard = ({ product }) => {
     const { isDisabled, handleClickOnToCart } = useToCart(
         product._id,
         product.price
     )
     return (
-        <li className="product-vCard" key={product._id}>
-            <Link to={`${categoryId}/${product._id}`}>
+        <li className="product-vCard">
+            <Link to={`${product.category}/${product._id}`}>
                 <div className="product-vCard__image">
                     <img src={product.images[0]} alt="product" />
                 </div>
@@ -48,8 +48,7 @@ const ProductCard = ({ product, categoryId }) => {
     )
 }
 ProductCard.propTypes = {
-    product: PropTypes.object,
-    categoryId: PropTypes.string
+    product: PropTypes.object
 }
 
 export default ProductCard

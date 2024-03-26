@@ -13,33 +13,45 @@ import LogOut from '../layouts/logOut'
 import Cart from '../layouts/cart'
 import Compare from '../layouts/compare'
 import Favorites from '../layouts/favorites'
+import SearchPage from '../pages/searchPage/searchPage'
+import SearchProvider from '../hooks/useSearch'
 
 const PageRouter = () => {
     const ComponentWithPopup = withPopup(Login)
+    // const { searchQuery } = useSearch()
     return (
         <>
             <PopupProvider>
                 <ComponentWithPopup />
-                <Header />
-                <main className="page">
-                    <div className="page__container">
-                        <Switch>
-                            <Route path="/profile" component={UserProfile} />
-                            <Route
-                                path="/catalog/:categoryId?/:productId?"
-                                component={RootCatalog}
-                            />
-                            <Route path="/favorites" component={Favorites} />
-                            <Route path="/compare" component={Compare} />
-                            <Route path="/cart" component={Cart} />
-                            <Route path="/login" component={Login} />
-                            <Route path={'/logout'} component={LogOut} />
-                            <Route path="/" exact component={MainPage} />
-                            <Redirect to="/" />
-                        </Switch>
-                    </div>
-                </main>
-                <Footer />
+                <SearchProvider>
+                    <Header />
+                    <main className="page">
+                        <div className="page__container">
+                            <Switch>
+                                <Route
+                                    path="/catalog/:categoryId?/:productId?"
+                                    component={RootCatalog}
+                                />
+                                <Route path="/search" component={SearchPage} />
+                                <Route
+                                    path="/profile"
+                                    component={UserProfile}
+                                />
+                                <Route
+                                    path="/favorites"
+                                    component={Favorites}
+                                />
+                                <Route path="/compare" component={Compare} />
+                                <Route path="/cart" component={Cart} />
+                                <Route path="/login" component={Login} />
+                                <Route path={'/logout'} component={LogOut} />
+                                <Route path="/" exact component={MainPage} />
+                                <Redirect to="/" />
+                            </Switch>
+                        </div>
+                    </main>
+                    <Footer />
+                </SearchProvider>
             </PopupProvider>
             <ToastContainer />
         </>
