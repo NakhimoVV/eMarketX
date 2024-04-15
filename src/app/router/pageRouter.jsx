@@ -15,6 +15,7 @@ import Compare from '../layouts/compare'
 import Favorites from '../layouts/favorites'
 import SearchPage from '../pages/searchPage/searchPage'
 import SearchProvider from '../hooks/useSearch'
+import CheckoutPage from '../pages/checkoutPage/checkoutPage'
 
 const PageRouter = () => {
     const ComponentWithPopup = withPopup(Login)
@@ -40,6 +41,10 @@ const PageRouter = () => {
                                 <Route
                                     path="/favorites"
                                     component={Favorites}
+                                />
+                                <Route
+                                    path="/checkout"
+                                    component={CheckoutPage}
                                 />
                                 <Route path="/compare" component={Compare} />
                                 <Route path="/cart" component={Cart} />

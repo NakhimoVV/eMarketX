@@ -4,6 +4,7 @@ import './style.scss'
 import ProductCartItem from '../../components/ui/product/productCartItem/productCartItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { fullCleanCart, getTotalPrice } from '../../store/cart'
+import { Link } from 'react-router-dom'
 
 const CartPage = ({ cartList }) => {
     const totalPrice = useSelector(getTotalPrice())
@@ -37,9 +38,11 @@ const CartPage = ({ cartList }) => {
                             <span>{totalPrice}</span> $
                         </p>
                     </div>
-                    <button className="cartTotal__bot checkout-btn btn">
-                        checkout
-                    </button>
+                    <Link to="/checkout">
+                        <button className="cartTotal__bot checkout-btn btn">
+                            Proceed to Checkout
+                        </button>
+                    </Link>
                 </div>
             </div>
         </section>

@@ -1,0 +1,38 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+
+.checkoutPage {
+    &__title {
+    }
+
+    &__body {
+    }
+
+    &__btn {
+        max-width: em(500);
+        margin: 0 auto;
+    }
+}
+.checkout {
+    max-width: em(500);
+    margin: 0 auto;
+
+    &__customer {
+    }
+
+    &__shipping {
+        p {
+            margin-bottom: rem(10);
+        }
+    }
+
+    &__payment {
+    }
+    &__fullPrice {
+        span {
+            font-family: 'Prompt';
+            font-size: rem(30);
+        }
+        margin-bottom: rem(10);
+    }
+}
