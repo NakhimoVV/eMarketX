@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import * as yup from 'yup'
 import './style.scss'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { parceYupError } from '../../utils/parceYupError'
 import TextField from '../../components/common/form/textField'
 import { getCurrentUserData } from '../../store/users'
 import RadioField from '../../components/common/form/radioField'
 import { typeShipping, typePayment } from './fieldsOptions'
-import { getTotalPrice } from '../../store/cart'
-// import { useDispatch } from 'react-redux'
+import { getCart, getTotalPrice } from '../../store/cart'
+import { createTicket } from '../../store/tickets'
 
 const CheckoutPage = () => {
     const user = useSelector(getCurrentUserData())
     const totalPrice = useSelector(getTotalPrice())
-    // const dispatch = useDispatch()
+    const cart = useSelector(getCart())
+    const dispatch = useDispatch()
     const [data, setData] = useState({
         name: user ? user.name : '',
         surname: user ? user.surname : '',
@@ -80,9 +81,12 @@ const CheckoutPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (!isValid) return
-        console.log(data)
-        // dispatch(signUp(data))
-        // setOpenPopup(false)
+        const ticketData = { ...data, ...cart }
+        console.log(ticketData)
+        dispatch(createTicket(ticketData))
+        //переадресация
+        //обнуление корзины
+        //сообщение о создании заказа
     }
 
     return (

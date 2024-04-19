@@ -114,6 +114,7 @@ export const fullCleanCart = () => (dispatch) => {
     dispatch(cleanCart())
 }
 
+export const getCart = () => (state) => state.cart
 export const getCartList = () => (state) => state.cart.items
 export const getTotalPrice = () => (state) => state.cart.totalPrice
 export const getCartQuantity = () => (state) => state.cart.quantity
