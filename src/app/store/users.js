@@ -4,6 +4,7 @@ import localStorageService from '../services/localStorage.service'
 import userService from '../services/user.service'
 import history from '../utils/history'
 import generateAuthError from '../utils/generateAuthError'
+import { fullCleanCart, getCart, loadCartUser } from './cart'
 
 const initialState = localStorageService.getAccessToken()
     ? {
@@ -53,6 +54,18 @@ const usersSlice = createSlice({
             state.entities = null
             state.isLoggedIn = false
             state.auth = null
+        },
+        userUpdatedCart: (state, action) => {
+            state.entities.cart = action.payload
+        },
+        userPushingCartFailed: (state, action) => {
+            state.error = action.payload
+        },
+        userRemovedCart: (state) => {
+            delete state.entities.cart
+        },
+        userRemovingCartFailed: (state, action) => {
+            state.error = action.payload
         }
     }
 })
@@ -64,12 +77,20 @@ const {
     userRequested,
     userReceved,
     userRequestFailed,
-    userLoggedOut
+    userLoggedOut,
+    userUpdatedCart,
+    userPushingCartFailed,
+    userRemovedCart,
+    userRemovingCartFailed
 } = actions
 
 const authRequested = createAction('users/authRequested')
 const userCreateRequested = createAction('users/userCreateRequested')
 const createUserFailed = createAction('users/createUserFailed')
+const userPushingCartRequested = createAction('users/userPushingCartRequested')
+const userRemovingCartRequested = createAction(
+    'users/userRemovingCartRequested'
+)
 
 export const logIn =
     ({ payload, redirect }) =>
@@ -129,6 +150,7 @@ export const logOut = () => (dispatch) => {
     localStorageService.removeAuthData()
     dispatch(userLoggedOut())
     history.push('/')
+    dispatch(fullCleanCart())
 }
 
 export const loadCurrentUser = () => async (dispatch) => {
@@ -136,13 +158,35 @@ export const loadCurrentUser = () => async (dispatch) => {
     try {
         const { content } = await userService.getCurrentUser()
         dispatch(userReceved(content))
+        dispatch(loadCartUser())
     } catch (error) {
         dispatch(userRequestFailed(error.message))
+    }
+}
+export const pushUserCart = () => async (dispatch, getState) => {
+    const isLoggedUser = getIsLoggedIn()(getState())
+    const cart = getCart()(getState())
+    if (isLoggedUser) {
+        try {
+            if (cart.items.length === 0) {
+                dispatch(userRemovingCartRequested())
+                await userService.removeCartUser()
+                dispatch(userRemovedCart())
+            } else {
+                dispatch(userPushingCartRequested())
+                const { content } = await userService.update({ cart })
+                dispatch(userUpdatedCart(...content))
+            }
+        } catch (error) {
+            dispatch(userPushingCartFailed(error.message))
+            dispatch(userRemovingCartFailed(error.message))
+        }
     }
 }
 
 export const getIsLoggedIn = () => (state) => state.users.isLoggedIn
 export const getCurrentUserData = () => (state) => state.users.entities
 export const getCurrentUserId = () => (state) => state.users.auth.userId
+export const getCurrentUserCart = () => (state) => state.users.entities.cart
 
 export default usersReducer

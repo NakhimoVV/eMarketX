@@ -16,14 +16,20 @@ const userService = {
             userEndPoint + localStorageService.getUserId()
         )
         return data
+    },
+    update: async (payload) => {
+        const { data } = await httpService.patch(
+            userEndPoint + localStorageService.getUserId(),
+            payload
+        )
+        return data
+    },
+    removeCartUser: async () => {
+        const { data } = await httpService.delete(
+            userEndPoint + localStorageService.getUserId() + '/cart'
+        )
+        return data
     }
-    // update: async (payload) => {
-    //     const { data } = await httpService.patch(
-    //         userEndPoint + localStorageService.getUserId(),
-    //         payload
-    //     )
-    //     return data
-    // }
 }
 
 export default userService

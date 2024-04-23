@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-// import cartService from '../services/cart.service'
+import { getCurrentUserCart, pushUserCart } from './users'
 
-// items= [{id:'dsada', count: 3, price: 323}]
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
@@ -77,41 +76,40 @@ const cartSlice = createSlice({
             state.totalPrice = state.items.reduce((sum, obj) => {
                 return obj.price * obj.count + sum
             }, 0)
-        }
+        },
+        pulledCartUser: (state, action) => (state = { ...action.payload })
     }
 })
 
 const { reducer: cartReducer, actions } = cartSlice
-const { addItem, onChange, minusOne, removeItem, cleanCart } = actions
-
-// const cartUpdateRequested = createAction('cart/cartUpdateRequested')
-// const cartUpdateFailed = createAction('cart/cartUpdateFailed')
+const { addItem, onChange, minusOne, removeItem, cleanCart, pulledCartUser } =
+    actions
 
 export const addToCart = (payload) => (dispatch) => {
     dispatch(addItem(payload))
+    dispatch(pushUserCart())
 }
-// export const addToCart = (payload) => async (dispatch) => {
-//     dispatch(cartUpdateRequested())
-//     try {
-//         const { content } = await cartService.update(payload)
-//         console.log(content)
-//         dispatch(addItem(payload))
-//     } catch (error) {
-//         dispatch(cartUpdateFailed(error.message))
-//     }
-// }
 
 export const onChangeCart = (payload) => (dispatch) => {
     dispatch(onChange(payload))
 }
 export const minusItemFromCart = (productId) => (dispatch) => {
     dispatch(minusOne(productId))
+    dispatch(pushUserCart())
 }
 export const removeItemFromCart = (productId) => (dispatch) => {
     dispatch(removeItem(productId))
+    dispatch(pushUserCart())
 }
 export const fullCleanCart = () => (dispatch) => {
     dispatch(cleanCart())
+    dispatch(pushUserCart())
+}
+export const loadCartUser = () => (dispatch, getState) => {
+    const cart = getCurrentUserCart()(getState())
+    if (cart) {
+        dispatch(pulledCartUser(cart))
+    }
 }
 
 export const getCart = () => (state) => state.cart

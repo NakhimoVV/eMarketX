@@ -16,13 +16,16 @@ import Favorites from '../layouts/favorites'
 import SearchPage from '../pages/searchPage/searchPage'
 import SearchProvider from '../hooks/useSearch'
 import CheckoutPage from '../pages/checkoutPage/checkoutPage'
+// import CheckoutDone from '../components/ui/checkout/checkoutDone'
 
 const PageRouter = () => {
     const ComponentWithPopup = withPopup(Login)
+    // const ComponentWithPopupCheckout = withPopup(CheckoutDone)
     // const { searchQuery } = useSearch()
     return (
         <>
             <PopupProvider>
+                {/* <ComponentWithPopupCheckout /> */}
                 <ComponentWithPopup />
                 <SearchProvider>
                     <Header />

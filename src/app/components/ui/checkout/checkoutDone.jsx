@@ -5,7 +5,6 @@ const CheckoutDone = () => {
         <>
             <h3>Congrads!</h3>
             <p>Order placed</p>
-            <p>Order is placed and paid</p>
         </>
     )
 }

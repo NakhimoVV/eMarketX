@@ -1,15 +1,15 @@
 import httpService from './http.service'
 
-const ticketsEndPoint = 'tickets/'
+const tasksEndPoint = 'tasks/'
 
-const ticketService = {
+const taskService = {
     create: async (payload) => {
         const { data } = await httpService.put(
-            ticketsEndPoint + payload._id,
+            tasksEndPoint + payload._id,
             payload
         )
         return data
     }
 }
 
-export default ticketService
+export default taskService

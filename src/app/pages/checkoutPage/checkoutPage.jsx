@@ -7,13 +7,16 @@ import TextField from '../../components/common/form/textField'
 import { getCurrentUserData } from '../../store/users'
 import RadioField from '../../components/common/form/radioField'
 import { typeShipping, typePayment } from './fieldsOptions'
-import { getCart, getTotalPrice } from '../../store/cart'
-import { createTicket } from '../../store/tickets'
+import { fullCleanCart, getCart, getTotalPrice } from '../../store/cart'
+import { createTask } from '../../store/tasks'
+import { useHistory } from 'react-router-dom'
+// import { useTriggerPopup } from '../../hooks/useTriggerPopup'
 
 const CheckoutPage = () => {
     const user = useSelector(getCurrentUserData())
     const totalPrice = useSelector(getTotalPrice())
     const cart = useSelector(getCart())
+    const history = useHistory()
     const dispatch = useDispatch()
     const [data, setData] = useState({
         name: user ? user.name : '',
@@ -81,11 +84,12 @@ const CheckoutPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (!isValid) return
-        const ticketData = { ...data, ...cart }
-        console.log(ticketData)
-        dispatch(createTicket(ticketData))
-        //переадресация
-        //обнуление корзины
+        const taskData = { ...data, ...cart }
+        const redirect = history.location.state
+            ? history.location.state.from.pathname
+            : '/'
+        dispatch(createTask({ payload: taskData, redirect }))
+        dispatch(fullCleanCart())
         //сообщение о создании заказа
     }
 

@@ -66,4 +66,5 @@ export const getCategoryNameById = (id) => (state) => {
     }
     return null
 }
+
 export default categoriesReducer
