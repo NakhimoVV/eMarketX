@@ -50,12 +50,14 @@
     transition: color 150ms ease-in-out;
 
     &__button_compare {
-        &:hover {
+        &:hover,
+        &.active {
             color: $orange;
         }
     }
     &__button_favorite {
-        &:hover {
+        &:hover,
+        &.active {
             color: $orange;
         }
     }

@@ -1,0 +1,23 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+@import 'src/app/scss/variables';
+
+.favorites {
+    &__title {
+        line-height: rem(34);
+        font-family: 'Prompt';
+        font-size: rem(30);
+        margin: 0px 0px 20px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__body {
+        display: flex;
+    }
+}
+
+.favoriteList {
+    flex: 1 1 auto;
+}

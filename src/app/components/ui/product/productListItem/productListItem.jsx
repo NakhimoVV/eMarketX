@@ -4,12 +4,15 @@ import './style.scss'
 import { Link } from 'react-router-dom'
 import { calcPrice } from '../../../../utils/calcPrice'
 import { useToCart } from '../../../../hooks/useToCart'
+import { useFavorites } from '../../../../hooks/useFavorites'
 
 const ProductListItem = ({ product }) => {
     const { isDisabled, handleClickOnToCart } = useToCart(
         product._id,
         product.price
     )
+
+    const { isFavorite, handleClickOnFavorite } = useFavorites(product._id)
 
     return (
         <li className="product-vList">
@@ -37,7 +40,13 @@ const ProductListItem = ({ product }) => {
                 <button className="actions__button_compare">
                     <i className="icon-compare"></i> <span>Compare</span>
                 </button>
-                <button className="actions__button_favorite">
+                <button
+                    className={
+                        'actions__button_favorite ' +
+                        (isFavorite ? 'active' : '')
+                    }
+                    onClick={handleClickOnFavorite}
+                >
                     <i className="icon-heart-empty"></i> <span>Favorites</span>
                 </button>
             </div>
