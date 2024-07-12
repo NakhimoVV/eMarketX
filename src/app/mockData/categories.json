@@ -1,82 +1,46 @@
 [
-    {
-        "_id": "NWOKdU45ZO020EcrAxJ",
-        "title": "smartphones"
-    },
-    {
-        "_id": "NWOKdVU4KlBPsWkHP4A",
-        "title": "laptops"
-    },
-    {
-        "_id": "NWOKdWtXTwxoAjMjcpb",
-        "title": "fragrances"
-    },
-    {
-        "_id": "NWOKdYIdMebEX_4pw_s",
-        "title": "skincare"
-    },
-    {
-        "_id": "NWOKdZgeRUnu7t1Yzy5",
-        "title": "groceries"
-    },
-    {
-        "_id": "NWOKda36DSXkOghaCji",
-        "title": "home-decoration"
-    },
-    {
-        "_id": "NWOKdbRazjnDz4rqR9N",
-        "title": "furniture"
-    },
-    {
-        "_id": "NWOKdcpyK6rEedE_kXk",
-        "title": "tops"
-    },
-    {
-        "_id": "NWOKdeEn2f8RGzyPJ9g",
-        "title": "womens-dresses"
-    },
-    {
-        "_id": "NWOKdfcZcaRH5_ZdkAC",
-        "title": "womens-shoes"
-    },
-    {
-        "_id": "NWOKdh1kj1Qmx_ceWdU",
-        "title": "mens-shirts"
-    },
-    {
-        "_id": "NWOKdiQt4KtNsn2UiMh",
-        "title": "mens-shoes"
-    },
-    {
-        "_id": "NWOKdjo-bAYrfHJFFya",
-        "title": "mens-watches"
-    },
-    {
-        "_id": "NWOKdlCOTBtr_3Fh9Fx",
-        "title": "womens-watches"
-    },
-    {
-        "_id": "NWOKdmZ_cXsTJIvI4XK",
-        "title": "womens-bags"
-    },
-    {
-        "_id": "NWOKdnyGyU4xLL08EcC",
-        "title": "womens-jewellery"
-    },
-    {
-        "_id": "NWOKdpL7ije22EtOw7d",
-        "title": "sunglasses"
-    },
-    {
-        "_id": "NWOKdqiTocXVr3GvZlG",
-        "title": "automotive"
-    },
-    {
-        "_id": "NWOKds647d18ZK8xf_2",
-        "title": "motorcycle"
-    },
-    {
-        "_id": "NWOKdtVbLZF5PmtqJsL",
-        "title": "lighting"
-    }
+  {
+    "_id": "9aa741eda4",
+    "title": "beauty"
+  },
+  {
+    "_id": "12fb0a688e",
+    "title": "fragrances"
+  },
+  {
+    "_id": "35eafd493a",
+    "title": "furniture"
+  },
+  {
+    "_id": "16f160f5ad",
+    "title": "groceries"
+  },
+  {
+    "_id": "ada2fc84a0",
+    "title": "home-decoration"
+  },
+  {
+    "_id": "9fdb6a3eb1",
+    "title": "kitchen-accessories"
+  },
+  {
+    "_id": "343a8b3e1b",
+    "title": "laptops"
+  },
+  {
+    "_id": "f92d893f86",
+    "title": "mens-shirts"
+  },
+  {
+    "_id": "ac9e200c08",
+    "title": "mens-shoes"
+  },
+  {
+    "_id": "03a8ea22ed",
+    "title": "mens-watches"
+  },
+  {
+    "_id": "cf1d6c905a",
+    "title": "mobile-accessories"
+  }
 ]
