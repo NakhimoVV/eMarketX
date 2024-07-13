@@ -11,7 +11,6 @@ const ProductListItem = ({ product }) => {
         product._id,
         product.price
     )
-
     const { isFavorite, handleClickOnFavorite } = useFavorites(product._id)
 
     return (

@@ -1,12 +1,12 @@
 import React from 'react'
 import FavoritesPage from '../pages/favoritesPage'
 import { useSelector } from 'react-redux'
-import { getFavoriteList } from '../store/favorites'
+import { getStateFavoriteList } from '../store/favorites'
 
 const Favorites = () => {
-    const favoriteList = useSelector(getFavoriteList())
-    if (favoriteList.length === 0) return <h3>Favorites is empty</h3>
-    return <FavoritesPage favoriteList={favoriteList} />
+    const favoriteListId = useSelector(getStateFavoriteList())
+    if (favoriteListId.length === 0) return <h3>Favorites is empty</h3>
+    return <FavoritesPage favoriteListId={favoriteListId} />
 }
 
 export default Favorites

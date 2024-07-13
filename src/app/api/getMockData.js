@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid')
 
 const getMockDataProducts = async () => {
     const { data } = await axios.get('https://dummyjson.com/products', {
-        params: { limit: 100 }
+        params: { limit: 194 }
     })
     return data
 }

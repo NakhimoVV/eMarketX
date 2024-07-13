@@ -38,6 +38,8 @@ export const fullCleanFavoriteList = () => (dispatch) => {
 //     }
 // }
 
-export const getFavoriteList = () => (state) => state.favorites.entities
+export const getStateFavoriteList = () => (state) => state.favorites.entities
+export const getExistenceItemById = (id) => (state) =>
+    state.favorites.entities.find((item) => item === id)
 
 export default favoritesReducer

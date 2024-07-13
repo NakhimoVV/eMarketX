@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, getCoutItemById } from '../store/cart'
-import PropTypes from 'prop-types'
 
 export const useToCart = (productId, productPrice) => {
     const dispatch = useDispatch()
@@ -19,8 +18,4 @@ export const useToCart = (productId, productPrice) => {
     }, [addedCount])
 
     return { isDisabled, handleClickOnToCart, addedCount }
-}
-useToCart.propTypes = {
-    productId: PropTypes.string.isRequired,
-    productPrice: PropTypes.number.isRequired
 }
