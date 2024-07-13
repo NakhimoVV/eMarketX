@@ -31,12 +31,6 @@ export const toggleFavorite = (payload) => (dispatch) => {
 export const fullCleanFavoriteList = () => (dispatch) => {
     dispatch(cleanList())
 }
-// export const loadFavoriteList = () => (dispatch, getState) => {
-//     const favoriteList = getCurrentUserCart()(getState())
-//     if (favoriteList) {
-//         dispatch(pulledCartUser(favoriteList))
-//     }
-// }
 
 export const getStateFavoriteList = () => (state) => state.favorites.entities
 export const getExistenceItemById = (id) => (state) =>

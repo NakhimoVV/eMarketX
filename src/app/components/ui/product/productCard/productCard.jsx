@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom'
 import { calcPrice } from '../../../../utils/calcPrice'
 import './style.scss'
 import { useToCart } from '../../../../hooks/useToCart'
+import { useFavorites } from '../../../../hooks/useFavorites'
 
 const ProductCard = ({ product }) => {
     const { isDisabled, handleClickOnToCart } = useToCart(
         product._id,
         product.price
     )
+    const { isFavorite, handleClickOnFavorite } = useFavorites(product._id)
+
     return (
         <li className="product-vCard">
             <Link to={`${product.category}/${product._id}`}>
@@ -27,7 +30,13 @@ const ProductCard = ({ product }) => {
                 <button className="actions__button_compare">
                     <i className="icon-compare"></i>
                 </button>
-                <button className="actions__button_favorite">
+                <button
+                    className={
+                        'actions__button_favorite ' +
+                        (isFavorite ? 'active' : '')
+                    }
+                    onClick={handleClickOnFavorite}
+                >
                     <i className="icon-heart-empty"></i>
                 </button>
             </div>

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { calcPrice } from '../../../../utils/calcPrice'
 import { useToCart } from '../../../../hooks/useToCart'
 import { useFavorites } from '../../../../hooks/useFavorites'
+import { useToCompare } from '../../../../hooks/useToCompare'
 
 const ProductListItem = ({ product }) => {
     const { isDisabled, handleClickOnToCart } = useToCart(
@@ -12,6 +13,7 @@ const ProductListItem = ({ product }) => {
         product.price
     )
     const { isFavorite, handleClickOnFavorite } = useFavorites(product._id)
+    const { handleClickOnToCompare } = useToCompare(product)
 
     return (
         <li className="product-vList">
@@ -36,7 +38,10 @@ const ProductListItem = ({ product }) => {
                 </p>
             </div>
             <div className="product-vList__actions actions">
-                <button className="actions__button_compare">
+                <button
+                    className="actions__button_compare"
+                    onClick={handleClickOnToCompare}
+                >
                     <i className="icon-compare"></i> <span>Compare</span>
                 </button>
                 <button

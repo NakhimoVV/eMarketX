@@ -5,6 +5,7 @@ import usersReducer from './users'
 import cartReducer from './cart'
 import taskReducer from './tasks'
 import favoritesReducer from './favorites'
+import compareReducer from './compare'
 
 const rootReducer = combineReducers({
     products: productsReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     users: usersReducer,
     cart: cartReducer,
     tasks: taskReducer,
-    favorites: favoritesReducer
+    favorites: favoritesReducer,
+    compare: compareReducer
 })
 
 export function createStore() {

@@ -3,19 +3,24 @@ import PropTypes from 'prop-types'
 import './style.scss'
 import ProductListItem from '../../components/ui/product/productListItem'
 import { getProductById } from '../../store/products'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { fullCleanFavoriteList } from '../../store/favorites'
 
 const FavoritesPage = ({ favoriteListId }) => {
+    //Надо разобраться с этим useSelector
     const favoriteProducts = useSelector((state) =>
         favoriteListId.map((productId) => getProductById(productId)(state))
     )
+    const dispatch = useDispatch()
+
     return (
         <section className="favorites">
             <div className="favorites__title">
                 <span>Favorites</span>
-                <button className="btn-clean">
-                    {/* Зачистка фейворитс */}
-                    {/* onClick={() => dispatch(fullCleanCart())} */}
+                <button
+                    className="btn-clean"
+                    onClick={() => dispatch(fullCleanFavoriteList())}
+                >
                     <i className="icon-close"></i>
                     <span>Clean</span>
                 </button>
