@@ -13,7 +13,7 @@ const ProductListItem = ({ product }) => {
         product.price
     )
     const { isFavorite, handleClickOnFavorite } = useFavorites(product._id)
-    const { handleClickOnToCompare } = useToCompare(product)
+    const { isCompare, handleClickOnToCompare } = useToCompare(product)
 
     return (
         <li className="product-vList">
@@ -39,7 +39,9 @@ const ProductListItem = ({ product }) => {
             </div>
             <div className="product-vList__actions actions">
                 <button
-                    className="actions__button_compare"
+                    className={
+                        'actions__button_compare ' + (isCompare ? 'active' : '')
+                    }
                     onClick={handleClickOnToCompare}
                 >
                     <i className="icon-compare"></i> <span>Compare</span>

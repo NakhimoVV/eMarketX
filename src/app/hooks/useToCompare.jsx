@@ -1,5 +1,6 @@
-import { useDispatch } from 'react-redux'
-import { addToCompare } from '../store/compare'
+import { useDispatch, useSelector } from 'react-redux'
+import { getExistenceProdInCompare, toggleCompare } from '../store/compare'
+import { useEffect, useState } from 'react'
 
 export const useToCompare = ({
     _id,
@@ -18,9 +19,12 @@ export const useToCompare = ({
     title
 }) => {
     const dispatch = useDispatch()
+    const [isCompare, setCompare] = useState(false)
+    const isIn = useSelector(getExistenceProdInCompare(_id, category))
+
     const handleClickOnToCompare = () => {
         dispatch(
-            addToCompare({
+            toggleCompare({
                 _id,
                 thumbnail,
                 dimensions,
@@ -37,7 +41,12 @@ export const useToCompare = ({
                 title
             })
         )
+        setCompare((prevState) => !prevState)
     }
 
-    return { handleClickOnToCompare }
+    useEffect(() => {
+        isIn ? setCompare(true) : setCompare(false)
+    }, [isIn])
+
+    return { isCompare, handleClickOnToCompare }
 }
