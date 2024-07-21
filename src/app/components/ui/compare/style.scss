@@ -1,0 +1,116 @@
+@use 'sass:math';
+@import 'src/app/scss/mixins';
+@import 'src/app/scss/variables';
+.compare {
+    &__category {
+    }
+
+    &__title {
+        font-family: 'Prompt';
+        font-size: rem(20);
+        text-transform: capitalize;
+        padding: 0px 0px 8px 0px;
+        border-bottom: 1px dashed rgba(152, 202, 250);
+    }
+
+    &__grid {
+        margin: 0px 0px 10px 0px;
+    }
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(180px, auto));
+    grid-template-rows: repeat(10, minmax(50px, auto));
+    justify-items: center;
+    align-items: center;
+    grid-auto-flow: column;
+    column-gap: 10px;
+
+    & p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(152, 202, 250, 0.1);
+        height: 100%;
+        width: 100%;
+        border-radius: 10px;
+        &:nth-child(1) {
+            grid-row: 3/4;
+        }
+        &:nth-child(2) {
+            grid-row: 4/5;
+        }
+        &:nth-child(3) {
+            grid-row: 5/6;
+        }
+        &:nth-child(4) {
+            grid-row: 6/7;
+        }
+        &:nth-child(5) {
+            grid-row: 7/8;
+        }
+        &:nth-child(6) {
+            grid-row: 8/9;
+        }
+        &:nth-child(7) {
+            grid-row: 9/10;
+        }
+        &:nth-child(8) {
+            grid-row: 10/11;
+        }
+    }
+    &__item {
+    }
+}
+
+.column-titles {
+}
+
+.column-data {
+    &__thumbnail {
+        width: 130px;
+        height: 100px;
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &__title {
+        font-family: 'Saira';
+        font-size: rem(18);
+    }
+
+    &__price {
+        font-family: 'Prompt';
+        font-size: rem(15);
+    }
+
+    &__brand {
+    }
+
+    &__rating {
+    }
+
+    &__tags {
+    }
+
+    &__weight {
+    }
+
+    &__dimensions {
+    }
+
+    &__stock {
+    }
+
+    &__description {
+    }
+}
+.width {
+}
+.height {
+}
+.depth {
+}

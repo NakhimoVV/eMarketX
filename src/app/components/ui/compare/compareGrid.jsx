@@ -1,27 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './style.scss'
 
 const CompareGridItem = ({ product }) => {
-    product = JSON.stringify(product)
     return (
-        <li className="grid__item">
-            {product}
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam
-            laborum libero corporis ipsa perferendis minus voluptates architecto
-            vel, dignissimos exercitationem amet culpa doloribus iusto. Omnis
-            voluptatum expedita nostrum amet adipisci?Lorem ipsum, dolor sit
-            amet consectetur adipisicing elit. Nobis numquam totam harum debitis
-            ullam sapiente aspernatur cupiditate, laborum autem fugiat quas ut
-            consequuntur ratione ipsam fuga soluta explicabo? Blanditiis,
-            atque.lorem Lorem ipsum dolor, sit amet consectetur adipisicing
-            elit. Delectus saepe deleniti, perferendis nesciunt explicabo, unde
-            porro odit tempore quibusdam, deserunt ipsum et cupiditate molestias
-            cumque ducimus accusamus. Obcaecati, tenetur numquam? Lorem ipsum
-            dolor sit, amet consectetur adipisicing elit. Aut tempore, hic
-            obcaecati nostrum sint dignissimos possimus deserunt recusandae,
-            amet iste aspernatur voluptatem explicabo debitis fugiat ex
-            quibusdam, eveniet itaque quam.
-        </li>
+        <>
+            <div className="column-data__thumbnail">
+                <img src={product.thumbnail} alt="thumbnail" />
+            </div>
+            <div className="column-data__title">{product.title}</div>
+            <div className="column-data__price">{product.price}</div>
+            <div className="column-data__brand">{product.brand}</div>
+            <div className="column-data__rating">{product.rating}</div>
+            <div className="column-data__tags">
+                {product.tags.map((tag, index) => (
+                    <span key={index}>{tag} </span>
+                ))}
+            </div>
+            <div className="column-data__weight">{product.weight}</div>
+            <div className="column-data__dimensions">
+                <div className="width">
+                    <span>width: </span>
+                    {product.dimensions.width}
+                </div>
+                <div className="height">
+                    <span>height: </span>
+                    {product.dimensions.height}
+                </div>
+                <div className="depth">
+                    <span>depth: </span>
+                    {product.dimensions.depth}
+                </div>
+            </div>
+            <div className="column-data__stock">{product.stock}</div>
+            <div className="column-data__description">
+                {product.description}
+            </div>
+        </>
     )
 }
 CompareGridItem.propTypes = {
