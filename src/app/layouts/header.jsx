@@ -5,7 +5,13 @@ import IconNavbar from '../components/ui/iconNavbar'
 import { useSearch } from '../hooks/useSearch'
 
 const Header = () => {
-    const { searchQuery, handleSearchQuery } = useSearch()
+    const {
+        searchQuery,
+        handleSearchQuery,
+        handleFocus,
+        handleBlur,
+        handleClearSearch
+    } = useSearch()
     return (
         <header className="header">
             <div className="header__container">
@@ -28,6 +34,9 @@ const Header = () => {
                         <SearchField
                             value={searchQuery}
                             onChange={handleSearchQuery}
+                            handleFocus={handleFocus}
+                            handleBlur={handleBlur}
+                            onClear={handleClearSearch}
                         />
                     </div>
                     <IconNavbar />

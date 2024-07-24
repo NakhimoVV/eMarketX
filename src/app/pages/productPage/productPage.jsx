@@ -43,7 +43,7 @@ const ProductPage = ({ productId }) => {
                     </div>
                     <div className="item__description">
                         <p>
-                            Brand: <span>{product.brand}</span>
+                            Brand: <span>{product?.brand}</span>
                         </p>
                         <p>
                             Description: <span>{product.description}</span>

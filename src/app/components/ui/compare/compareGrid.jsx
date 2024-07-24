@@ -10,7 +10,7 @@ const CompareGridItem = ({ product }) => {
             </div>
             <div className="column-data__title">{product.title}</div>
             <div className="column-data__price">{product.price}</div>
-            <div className="column-data__brand">{product.brand}</div>
+            <div className="column-data__brand">{product?.brand}</div>
             <div className="column-data__rating">{product.rating}</div>
             <div className="column-data__tags">
                 {product.tags.map((tag, index) => (

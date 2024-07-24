@@ -2,9 +2,6 @@
 @import 'src/app/scss/mixins';
 @import 'src/app/scss/variables';
 .compare {
-    &__category {
-    }
-
     &__title {
         font-family: 'Prompt';
         font-size: rem(20);
@@ -59,11 +56,6 @@
             grid-row: 10/11;
         }
     }
-    &__item {
-    }
-}
-
-.column-titles {
 }
 
 .column-data {
@@ -86,31 +78,4 @@
         font-family: 'Prompt';
         font-size: rem(15);
     }
-
-    &__brand {
-    }
-
-    &__rating {
-    }
-
-    &__tags {
-    }
-
-    &__weight {
-    }
-
-    &__dimensions {
-    }
-
-    &__stock {
-    }
-
-    &__description {
-    }
-}
-.width {
-}
-.height {
-}
-.depth {
 }
