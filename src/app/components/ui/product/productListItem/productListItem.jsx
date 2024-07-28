@@ -6,8 +6,9 @@ import { calcPrice } from '../../../../utils/calcPrice'
 import { useToCart } from '../../../../hooks/useToCart'
 import { useFavorites } from '../../../../hooks/useFavorites'
 import { useToCompare } from '../../../../hooks/useToCompare'
+import Image from '../../../common/Image/Image'
 
-const ProductListItem = ({ product }) => {
+const ProductListItem = React.memo(({ product }) => {
     const { isDisabled, handleClickOnToCart } = useToCart(
         product._id,
         product.price
@@ -18,7 +19,7 @@ const ProductListItem = ({ product }) => {
     return (
         <li className="product-vList">
             <div className="product-vList__image">
-                <img src={product.images[0]} alt="product" />
+                <Image imgUrl={product.images[0]} alt={product.title} />
             </div>
             <Link
                 className="product-vList__title"
@@ -75,7 +76,7 @@ const ProductListItem = ({ product }) => {
             </div>
         </li>
     )
-}
+})
 ProductListItem.propTypes = {
     product: PropTypes.object
 }

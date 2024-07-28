@@ -5,6 +5,7 @@ import { calcPrice } from '../../../../utils/calcPrice'
 import './style.scss'
 import { useToCart } from '../../../../hooks/useToCart'
 import { useFavorites } from '../../../../hooks/useFavorites'
+import Image from '../../../common/Image/Image'
 
 const ProductCard = ({ product }) => {
     const { isDisabled, handleClickOnToCart } = useToCart(
@@ -17,7 +18,7 @@ const ProductCard = ({ product }) => {
         <li className="product-vCard">
             <Link to={`${product.category}/${product._id}`}>
                 <div className="product-vCard__image">
-                    <img src={product.images[0]} alt="product" />
+                    <Image imgUrl={product.images[0]} alt={product.title} />
                 </div>
                 <div className="product-vCard__title">{product.title}</div>
                 <div className="product-vCard__info">

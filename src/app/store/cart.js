@@ -23,7 +23,7 @@ const cartSlice = createSlice({
                 0
             )
             state.totalPrice = state.items.reduce((sum, obj) => {
-                return obj.price * obj.count + sum
+                return +(obj.price * obj.count + sum).toFixed(2)
             }, 0)
         },
         removeItem: (state, action) => {
@@ -33,7 +33,7 @@ const cartSlice = createSlice({
                 0
             )
             state.totalPrice = state.items.reduce((sum, obj) => {
-                return obj.price * obj.count + sum
+                return +(obj.price * obj.count + sum).toFixed(2)
             }, 0)
         },
         cleanCart: (state) => {
@@ -55,7 +55,7 @@ const cartSlice = createSlice({
                 0
             )
             state.totalPrice = state.items.reduce((sum, obj) => {
-                return obj.price * obj.count + sum
+                return +(obj.price * obj.count + sum).toFixed(2)
             }, 0)
         },
         minusOne: (state, action) => {
@@ -74,7 +74,7 @@ const cartSlice = createSlice({
                 0
             )
             state.totalPrice = state.items.reduce((sum, obj) => {
-                return obj.price * obj.count + sum
+                return +(obj.price * obj.count + sum).toFixed(2)
             }, 0)
         },
         pulledCartUser: (state, action) => (state = { ...action.payload })

@@ -39,7 +39,7 @@ const ProductPage = ({ productId }) => {
                 </div>
                 <div className="productPage__body item">
                     <div className="item__images">
-                        <img src={product.images[0]} alt="pics" />
+                        <img src={product.images[0]} alt={product.title} />
                     </div>
                     <div className="item__description">
                         <p>

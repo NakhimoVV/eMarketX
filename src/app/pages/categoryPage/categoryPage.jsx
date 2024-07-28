@@ -20,7 +20,7 @@ const CategoryPage = ({ categoryId }) => {
     const [priceRange, setPriceRange] = useState(initialMinMax)
     const [sortBy, setSortBy] = useState({ path: 'rating', order: 'desc' })
     const [currentPage, setCurrentPage] = useState(1)
-    const pageSize = 4
+    const pageSize = 6
 
     const handleMinChange = ({ target }) => {
         setPriceRange((prevState) => [+target.value, prevState[1]])

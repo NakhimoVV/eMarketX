@@ -8,7 +8,7 @@ const CategoryBox = ({ _id, title }) => {
         <Link to={`/catalog/${_id}`} className="categories__item box">
             <div className="box__wrap-image">
                 <img
-                    src={`/assets/images/categories/${title}.png`}
+                    src={`/assets/images/categories/${title}.webp`}
                     alt={title}
                     className="box__image"
                 />
