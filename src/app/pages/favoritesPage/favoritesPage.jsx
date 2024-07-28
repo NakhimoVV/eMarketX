@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fullCleanFavoriteList } from '../../store/favorites'
 
 const FavoritesPage = ({ favoriteListId }) => {
-    //Надо разобраться с этим useSelector
     const favoriteProducts = useSelector((state) =>
         favoriteListId.map((productId) => getProductById(productId)(state))
     )

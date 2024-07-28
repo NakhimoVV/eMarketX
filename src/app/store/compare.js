@@ -28,15 +28,23 @@ const compareSlice = createSlice({
             } else {
                 state.entities[keyCategory] = [action.payload]
             }
+        },
+        cleanCategory: (state, action) => {
+            if (action.payload) {
+                delete state.entities[action.payload]
+            }
         }
     }
 })
 
 const { reducer: compareReducer, actions } = compareSlice
-const { toggleProduct } = actions
+const { toggleProduct, cleanCategory } = actions
 
 export const toggleCompare = (payload) => (dispatch) => {
     dispatch(toggleProduct(payload))
+}
+export const cleanCompareCategory = (payload) => (dispatch) => {
+    dispatch(cleanCategory(payload))
 }
 
 export const getCompareList = () => (state) => state.compare.entities

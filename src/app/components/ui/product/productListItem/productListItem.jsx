@@ -4,17 +4,14 @@ import './style.scss'
 import { Link } from 'react-router-dom'
 import { calcPrice } from '../../../../utils/calcPrice'
 import { useToCart } from '../../../../hooks/useToCart'
-import { useFavorites } from '../../../../hooks/useFavorites'
-import { useToCompare } from '../../../../hooks/useToCompare'
 import Image from '../../../common/Image/Image'
+import Actions from '../../actions/actions'
 
-const ProductListItem = React.memo(({ product }) => {
+const ProductListItem = React.memo(({ product, viewType }) => {
     const { isDisabled, handleClickOnToCart } = useToCart(
         product._id,
         product.price
     )
-    const { isFavorite, handleClickOnFavorite } = useFavorites(product._id)
-    const { isCompare, handleClickOnToCompare } = useToCompare(product)
 
     return (
         <li className="product-vList">
@@ -35,27 +32,11 @@ const ProductListItem = React.memo(({ product }) => {
                     stock : <span>{product.stock}</span>
                 </p>
                 <p>
-                    item id : <span>{product._id}</span>
+                    sku : <span>{product.sku}</span>
                 </p>
             </div>
             <div className="product-vList__actions actions">
-                <button
-                    className={
-                        'actions__button_compare ' + (isCompare ? 'active' : '')
-                    }
-                    onClick={handleClickOnToCompare}
-                >
-                    <i className="icon-compare"></i> <span>Compare</span>
-                </button>
-                <button
-                    className={
-                        'actions__button_favorite ' +
-                        (isFavorite ? 'active' : '')
-                    }
-                    onClick={handleClickOnFavorite}
-                >
-                    <i className="icon-heart-empty"></i> <span>Favorites</span>
-                </button>
+                <Actions product={product} viewType={viewType} />
             </div>
             <div className="product-vList__buy">
                 <div className="product-vList__price">
@@ -78,7 +59,8 @@ const ProductListItem = React.memo(({ product }) => {
     )
 })
 ProductListItem.propTypes = {
-    product: PropTypes.object
+    product: PropTypes.object.isRequired,
+    viewType: PropTypes.string.isRequired
 }
 
 export default ProductListItem

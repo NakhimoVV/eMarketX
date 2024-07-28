@@ -7,6 +7,9 @@ const CompareGridItem = ({ product }) => {
         <>
             <div className="column-data__thumbnail">
                 <img src={product.thumbnail} alt="thumbnail" />
+                <button className="btn-clean">
+                    <i className="icon-close"></i>
+                </button>
             </div>
             <div className="column-data__title">{product.title}</div>
             <div className="column-data__price">{product.price}</div>

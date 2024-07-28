@@ -9,9 +9,17 @@ const ProductBlock = ({ products, viewType }) => {
         <ul className={'products-' + viewType}>
             {products.map((product) =>
                 viewType === 'vList' ? (
-                    <ProductListItem key={product._id} product={product} />
+                    <ProductListItem
+                        key={product._id}
+                        product={product}
+                        viewType={viewType}
+                    />
                 ) : (
-                    <ProductCard key={product._id} product={product} />
+                    <ProductCard
+                        key={product._id}
+                        product={product}
+                        viewType={viewType}
+                    />
                 )
             )}
         </ul>

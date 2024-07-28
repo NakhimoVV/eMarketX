@@ -4,16 +4,14 @@ import { Link } from 'react-router-dom'
 import { calcPrice } from '../../../../utils/calcPrice'
 import './style.scss'
 import { useToCart } from '../../../../hooks/useToCart'
-import { useFavorites } from '../../../../hooks/useFavorites'
 import Image from '../../../common/Image/Image'
+import Actions from '../../actions/actions'
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, viewType }) => {
     const { isDisabled, handleClickOnToCart } = useToCart(
         product._id,
         product.price
     )
-    const { isFavorite, handleClickOnFavorite } = useFavorites(product._id)
-
     return (
         <li className="product-vCard">
             <Link to={`${product.category}/${product._id}`}>
@@ -28,18 +26,7 @@ const ProductCard = ({ product }) => {
                 </div>
             </Link>
             <div className="product-vCard__actions actions">
-                <button className="actions__button_compare">
-                    <i className="icon-compare"></i>
-                </button>
-                <button
-                    className={
-                        'actions__button_favorite ' +
-                        (isFavorite ? 'active' : '')
-                    }
-                    onClick={handleClickOnFavorite}
-                >
-                    <i className="icon-heart-empty"></i>
-                </button>
+                <Actions product={product} viewType={viewType} />
             </div>
             <div className="product-vCard__price">
                 <p>{calcPrice(product.price, product.discountPercentage)}</p>
@@ -58,7 +45,8 @@ const ProductCard = ({ product }) => {
     )
 }
 ProductCard.propTypes = {
-    product: PropTypes.object
+    product: PropTypes.object.isRequired,
+    viewType: PropTypes.string.isRequired
 }
 
 export default ProductCard
