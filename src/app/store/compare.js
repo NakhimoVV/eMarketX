@@ -33,18 +33,36 @@ const compareSlice = createSlice({
             if (action.payload) {
                 delete state.entities[action.payload]
             }
+        },
+        deleteItem: (state, action) => {
+            const key = action.payload.category
+            const itemId = action.payload._id
+            if (key) {
+                const isLastItem = state.entities[key].length
+                if (isLastItem > 1) {
+                    state.entities[key] = state.entities[key].filter(
+                        (item) => item._id !== itemId
+                    )
+                } else {
+                    delete state.entities[key]
+                }
+            }
         }
     }
 })
 
 const { reducer: compareReducer, actions } = compareSlice
-const { toggleProduct, cleanCategory } = actions
+const { toggleProduct, cleanCategory, deleteItem } = actions
 
 export const toggleCompare = (payload) => (dispatch) => {
     dispatch(toggleProduct(payload))
 }
 export const cleanCompareCategory = (payload) => (dispatch) => {
     dispatch(cleanCategory(payload))
+}
+export const removeItemCompare = (payload) => (dispatch) => {
+    console.log(payload)
+    dispatch(deleteItem(payload))
 }
 
 export const getCompareList = () => (state) => state.compare.entities

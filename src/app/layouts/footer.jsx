@@ -4,23 +4,6 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer__container">
-                {/* <div className="footer__menu-list">
-                    <nav className="menu-list">
-                        <div className="menu-list__title">Company</div>
-                        <ul className="menu-list__content">
-                            <li className="footer__menu-link">About Us</li>
-                            <li className="footer__menu-link">Contacts</li>
-                        </ul>
-                    </nav>
-                    <nav className="menu-list">
-                        <div className="menu-list__title">Buyer</div>
-                        <ul className="menu-list__content">
-                            <li className="footer__menu-link">Promotions</li>
-                            <li className="footer__menu-link">Return items</li>
-                            <li className="footer__menu-link">Promo codes</li>
-                        </ul>
-                    </nav>
-                </div> */}
                 <div className="footer__info">
                     <div className="footer__copyright">
                         <p>

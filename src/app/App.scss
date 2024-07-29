@@ -74,6 +74,13 @@
     font-size: rem(30);
     padding: 30px 0px;
 }
+.emptyPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: em(650);
+}
 
 @import 'scss/loader';
 @import 'scss/header';

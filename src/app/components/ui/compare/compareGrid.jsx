@@ -1,13 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
+import { useDispatch } from 'react-redux'
+import { removeItemCompare } from '../../../store/compare'
 
 const CompareGridItem = ({ product }) => {
+    const dispatch = useDispatch()
+    const { category, _id } = product
     return (
         <>
             <div className="column-data__thumbnail">
                 <img src={product.thumbnail} alt="thumbnail" />
-                <button className="btn-clean">
+                <button
+                    className="btn-clean"
+                    onClick={() =>
+                        dispatch(removeItemCompare({ category, _id }))
+                    }
+                >
                     <i className="icon-close"></i>
                 </button>
             </div>
