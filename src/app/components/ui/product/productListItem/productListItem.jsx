@@ -6,12 +6,14 @@ import { calcPrice } from '../../../../utils/calcPrice'
 import { useToCart } from '../../../../hooks/useToCart'
 import Image from '../../../common/Image/Image'
 import Actions from '../../actions/actions'
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min'
 
 const ProductListItem = React.memo(({ product, viewType }) => {
     const { isDisabled, handleClickOnToCart } = useToCart(
         product._id,
         product.price
     )
+    const { pathname } = useLocation()
 
     return (
         <li className="product-vList">
@@ -20,7 +22,9 @@ const ProductListItem = React.memo(({ product, viewType }) => {
             </div>
             <Link
                 className="product-vList__title"
-                to={`${product.category}/${product._id}`}
+                to={`${pathname === '/favorites' && '/catalog/'}${
+                    product.category
+                }/${product._id}`}
             >
                 {product.title}
             </Link>

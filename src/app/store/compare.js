@@ -61,7 +61,6 @@ export const cleanCompareCategory = (payload) => (dispatch) => {
     dispatch(cleanCategory(payload))
 }
 export const removeItemCompare = (payload) => (dispatch) => {
-    console.log(payload)
     dispatch(deleteItem(payload))
 }
 

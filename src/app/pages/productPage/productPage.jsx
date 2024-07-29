@@ -7,6 +7,7 @@ import { getProductById } from '../../store/products'
 import { addToCart, minusItemFromCart, onChangeCart } from '../../store/cart'
 import QuantityInput from '../../components/common/quantityInput'
 import { useToCart } from '../../hooks/useToCart'
+import Actions from '../../components/ui/actions/actions'
 
 const ProductPage = ({ productId }) => {
     const dispatch = useDispatch()
@@ -87,14 +88,7 @@ const ProductPage = ({ productId }) => {
                         )}
 
                         <div className="target__actions actions">
-                            <button className="actions__button_compare">
-                                <i className="icon-compare"></i>{' '}
-                                <span>Compare</span>
-                            </button>
-                            <button className="actions__button_favorite">
-                                <i className="icon-heart-empty"></i>{' '}
-                                <span>Favorite</span>
-                            </button>
+                            <Actions product={product} viewType={'vList'} />
                         </div>
                     </div>
                 </div>
