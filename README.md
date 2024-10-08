@@ -1,7 +1,17 @@
-# Getting Started with Create React App
+# eMarketX
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is built on React using Redux State Manager and is linked to FireWase RealTime Database.
 
-## Available Scripts
+## Some extra npm packages
 
-In the project directory, you can run:
+• react-router-dom (v5)\
+• rc-slider (v10)\
+• lodash\
+• prop-types\
+• axios\
+• yup
+
+## Notes
+
+Is a personal project for learning\
+**_Temporally only Desktop_**

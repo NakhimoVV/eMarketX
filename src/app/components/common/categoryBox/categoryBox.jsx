@@ -11,6 +11,8 @@ const CategoryBox = ({ _id, title }) => {
                     src={`/assets/images/categories/${title}.webp`}
                     alt={title}
                     className="box__image"
+                    width={'100px'}
+                    height={'100px'}
                 />
             </div>
             <p className="box__title">{title}</p>
