@@ -3,16 +3,15 @@ import PropTypes from 'prop-types'
 import './style.scss'
 
 const ModalWindow = ({ active, setActive, children }) => {
-    const onClose = () => setActive(false)
+    const onClose = () => {
+        setActive(false)
+    }
     return (
         <>
             {active && (
                 <div className={active ? 'modal active' : 'modal'}>
-                    <div className="modal__wrapper" onClick={onClose}>
-                        <div
-                            className="modal__body"
-                            onClick={(e) => e.stopPropagation()}
-                        >
+                    <div className="modal__wrapper">
+                        <div className="modal__body">
                             <button className="modal__close" onClick={onClose}>
                                 <i className="icon-close"></i>
                             </button>

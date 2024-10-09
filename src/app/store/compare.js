@@ -64,6 +64,17 @@ export const removeItemCompare = (payload) => (dispatch) => {
     dispatch(deleteItem(payload))
 }
 
+// Селекторы
+export const getCompareQuantity = () => (state) => {
+    const obj = state.compare.entities
+    let length = 0
+    if (obj) {
+        Object.values(obj).forEach((item) => {
+            length += _.size(item)
+        })
+        return length
+    }
+}
 export const getCompareList = () => (state) => state.compare.entities
 export const getExistenceProdInCompare = (id, categoryId) => (state) =>
     state.compare.entities[categoryId]?.find((item) => item._id === id)

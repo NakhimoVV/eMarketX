@@ -35,16 +35,18 @@
         & i {
             font-size: rem(33);
         }
+        position: relative;
     }
 
     &__compare {
+        position: relative;
     }
 
     &__basket {
         position: relative;
     }
 }
-.basketQuantity {
+.nav-quantity {
     position: absolute;
     right: -20%;
     top: -15%;

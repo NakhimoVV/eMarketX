@@ -34,10 +34,7 @@ const usersSlice = createSlice({
             state.error = action.payload
         },
         userCreated: (state, action) => {
-            if (!Array.isArray(state.entities)) {
-                state.entities = []
-            }
-            state.entities.push(action.payload)
+            state.entities = action.payload
         },
         userRequested: (state) => {
             state.isLoading = true

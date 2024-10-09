@@ -32,6 +32,8 @@ export const fullCleanFavoriteList = () => (dispatch) => {
     dispatch(cleanList())
 }
 
+export const getFavoriteQuantity = () => (state) =>
+    state.favorites.entities.length
 export const getStateFavoriteList = () => (state) => state.favorites.entities
 export const getExistenceItemById = (id) => (state) =>
     state.favorites.entities.find((item) => item === id)
