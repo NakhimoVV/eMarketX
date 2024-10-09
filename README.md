@@ -2,6 +2,8 @@
 
 This project is built on React using Redux State Manager and is linked to FireWase RealTime Database.
 
+[eMarketX](https://emarketx-321af.web.app/ 'link to eMarketX')
+
 ## Some extra npm packages
 
 • react-router-dom (v5)\

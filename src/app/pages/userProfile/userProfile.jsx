@@ -18,7 +18,8 @@ const UserProfile = ({ userId }) => {
             <p className="profile__email">{user.email}</p>
             {user.city && <p className="profile__city">{user.city}</p>}
             <div className="profile__buttons">
-                <a href="">edit profile</a> / <Link to="/logout">logout</Link>
+                {/* <a href="">edit profile</a> / */}
+                <Link to="/logout">logout</Link>
             </div>
         </section>
     )
