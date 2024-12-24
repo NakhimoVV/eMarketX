@@ -29,7 +29,7 @@ const RegisterForm = () => {
             .boolean()
             .test(
                 'required true',
-                'Согласие на обработку данных обязательно',
+                'Consent to data processing is required',
                 (value) => value === true
             ),
         city: yup.string('string'),
@@ -38,27 +38,27 @@ const RegisterForm = () => {
             .required('Required field')
             .matches(
                 /[A-Z]+/g,
-                'Пароль должен содержать заглавную латинскую букву'
+                'The password must contain a capital Latin letter'
             )
             .matches(/\d+/g, 'Пароль должен содержать число')
-            .min(8, 'Пароль должен содержать мимимум 8 символов'),
+            .min(8, 'Password must be at least 8 characters long'),
         email: yup
             .string()
             .required('Required field')
-            .email('Email введён некорректно'),
+            .email('Email entered incorrectly'),
         surname: yup
             .string()
             .required('Required field')
             .matches(
                 /^[A-ZА-Я][a-zа-я]*([ -][A-ZА-Я][a-zа-я]*)?/gmu,
-                'Фамилия должна начинаться с большой буквы'
+                'The last name must start with a capital letter'
             ),
         name: yup
             .string()
             .required('Required field')
             .matches(
                 /^[A-ZА-Я][a-zа-я]*([ -][A-ZА-Я][a-zа-я]*)?/gmu,
-                'Имя должно начинаться с большой буквы'
+                'The name must start with a capital letter'
             )
     })
 
@@ -131,7 +131,7 @@ const RegisterForm = () => {
                 label="Your gender?"
             />
             <TextField
-                label="City are you from?"
+                label="What city are you from?"
                 name="city"
                 value={data.city}
                 onChange={handleChange}
@@ -143,7 +143,7 @@ const RegisterForm = () => {
                 name="licence"
                 error={errors.licence}
             >
-                Подтвердить <a>лицензионное соглашение</a>?
+                Confirm <a>the license agreement</a>?
             </CheckBoxField>
             <button type="submit" disabled={!isValid} className="btn">
                 Sign Up

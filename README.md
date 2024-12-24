@@ -4,6 +4,8 @@ This project is built on React using Redux State Manager and is linked to Fireba
 
 [eMarketX](https://emarketx-321af.web.app/ 'link to eMarketX')
 
+The interface was created independently (without a design layout)
+
 ## Some extra npm packages
 
 • react-router-dom (v5)\

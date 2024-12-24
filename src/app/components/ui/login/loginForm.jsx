@@ -42,7 +42,7 @@ const LoginForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             <TextField
-                label="Email or phone"
+                label="Email"
                 name="email"
                 value={data.email}
                 onChange={handleChange}

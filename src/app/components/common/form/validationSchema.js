@@ -1,34 +1,34 @@
 export const validationSchema = {
     name: {
         isRequired: {
-            message: 'Имя обязательно для заполнения'
+            message: 'First name is required'
         }
     },
     surname: {
         isRequired: {
-            message: 'Фамилия обязательна для заполнения'
+            message: 'Last name is required'
         }
     },
     email: {
         isRequired: {
-            message: 'Электронная почта обязательна для заполнения'
+            message: 'Email is required'
         },
         isEmail: {
-            message: 'Email введён некорректно'
+            message: 'Email is entered incorrectly'
         }
     },
     password: {
         isRequired: {
-            message: 'Пароль обязателен для заполнения'
+            message: 'Password is required'
         },
         isCapitalSymbol: {
-            message: 'Пароль должен содержать заглавную латинскую букву'
+            message: 'Password must contain a capital Latin letter'
         },
         isContainDigit: {
-            message: 'Пароль должен содержать число'
+            message: 'Password must contain a number'
         },
         min: {
-            message: 'Пароль должен содержать мимимум 8 символов',
+            message: 'Password must be at least 8 characters long',
             param: 8
         }
     }

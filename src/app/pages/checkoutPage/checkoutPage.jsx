@@ -46,20 +46,20 @@ const CheckoutPage = () => {
         email: yup
             .string()
             .required('Required field')
-            .email('Email введён некорректно'),
+            .email('Email entered incorrectly'),
         surname: yup
             .string()
             .required('Required field')
             .matches(
                 /^[A-ZА-Я][a-zа-я]*([ -][A-ZА-Я][a-zа-я]*)?/gmu,
-                'Фамилия должна начинаться с большой буквы'
+                'The last name must start with a capital letter'
             ),
         name: yup
             .string()
             .required('Required field')
             .matches(
                 /^[A-ZА-Я][a-zа-я]*([ -][A-ZА-Я][a-zа-я]*)?/gmu,
-                'Имя должно начинаться с большой буквы'
+                'The name must start with a capital letter'
             )
     })
 

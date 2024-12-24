@@ -3,7 +3,7 @@
     &__container {
         max-width: em($maxWidthContainer);
         margin: 26px auto 0px auto;
-        padding: 0 0 8px 0;
+        padding: 6px 0 8px 0;
         @media (max-width: $pc) {
             max-width: em(1100);
         }
